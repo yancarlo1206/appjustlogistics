@@ -25,6 +25,8 @@ import Cliente from "views/pages/cliente/Index";
 import Articulo from "views/pages/articulo/Index";
 import Compra from "views/pages/compra/Index";
 import Venta from "views/pages/venta/Index";
+import Usuario from "views/pages/usuario/Index";
+import Cotizacion from "views/pages/cotizacion/Index";
 
 var routes = [
   {
@@ -53,6 +55,20 @@ var routes = [
     name: "Articulo",
     icon: "ni ni-tag text-success",
     component: <Articulo />,
+    layout: "/admin",
+  },
+  {
+    path: "/usuario",
+    name: "Usuario",
+    icon: "ni ni-tag text-success",
+    component: <Usuario />,
+    layout: "/admin",
+  },
+  {
+    path: "/cotizacion",
+    name: "Cotizacion",
+    icon: "ni ni-tag text-success",
+    component: <Cotizacion />,
     layout: "/admin",
   },
   /*{
