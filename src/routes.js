@@ -25,8 +25,11 @@ import Cliente from "views/pages/cliente/Index";
 import Articulo from "views/pages/articulo/Index";
 import Compra from "views/pages/compra/Index";
 import Venta from "views/pages/venta/Index";
-import Usuario from "views/pages/usuario/Index";
 import Cotizacion from "views/pages/cotizacion/Index";
+import Edificios from "views/pages/edificios/Index";
+import Apartamentos from "views/pages/apartamentos/Index";
+import Espacios from "views/pages/espacios/Index";
+import Clientes from "views/pages/clientes/Index";
 
 var routes = [
   {
@@ -58,17 +61,38 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/usuario",
-    name: "Usuario",
-    icon: "ni ni-tag text-success",
-    component: <Usuario />,
-    layout: "/admin",
-  },
-  {
     path: "/cotizacion",
     name: "Cotizacion",
     icon: "ni ni-tag text-success",
     component: <Cotizacion />,
+    layout: "/admin",
+  },
+  {
+    path: "/edificios",
+    name: "Edificios",
+    icon: "ni ni-tag text-success",
+    component: <Edificios />,
+    layout: "/admin",
+  },
+  {
+    path: "/apartamentos",
+    name: "Apartamentos",
+    icon: "ni ni-tag text-success",
+    component: <Apartamentos />,
+    layout: "/admin",
+  },
+  {
+    path: "/espacios",
+    name: "Espacios",
+    icon: "ni ni-tag text-success",
+    component: <Espacios />,
+    layout: "/admin",
+  },
+  {
+    path: "/clientes",
+    name: "Clientes",
+    icon: "ni ni-tag text-success",
+    component: <Clientes />,
     layout: "/admin",
   },
   /*{

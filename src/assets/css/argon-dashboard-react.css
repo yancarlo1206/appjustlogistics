@@ -4064,7 +4064,7 @@ input[type="button"].btn-block {
   ~ .custom-control-label::before {
   border-color: #5e72e4;
   background-color: #5e72e4;
-  box-shadow: ;
+  box-shadow: #00dea2;
 }
 
 .custom-checkbox
@@ -14318,7 +14318,7 @@ button.bg-lighter:focus {
 }
 
 .bg-gradient-info {
-  background: linear-gradient(87deg, #11cdef 0, #1171ef 100%) !important;
+  background: linear-gradient(87deg, #310262 0, #310262 100%) !important;
 }
 
 .bg-gradient-warning {
