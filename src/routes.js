@@ -53,13 +53,13 @@ var routes = [
     component: <Compra />,
     layout: "/admin",
   },*/
-  {
+  /*{
     path: "/articulo",
     name: "Articulo",
     icon: "ni ni-tag text-success",
     component: <Articulo />,
     layout: "/admin",
-  },
+  },*/
   {
     path: "/cotizacion",
     name: "Cotizacion",
