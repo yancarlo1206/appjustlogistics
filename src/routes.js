@@ -25,6 +25,7 @@ import Cliente from "views/pages/cliente/Index";
 import Articulo from "views/pages/articulo/Index";
 import Compra from "views/pages/compra/Index";
 import Venta from "views/pages/venta/Index";
+import Usuario from "views/pages/usuario/Index";
 
 var routes = [
   {
@@ -47,7 +48,7 @@ var routes = [
     icon: "ni ni-cart text-success",
     component: <Compra />,
     layout: "/admin",
-  },*/
+  },
   {
     path: "/articulo",
     name: "Articulo",
@@ -55,13 +56,13 @@ var routes = [
     component: <Articulo />,
     layout: "/admin",
   },
-  /*{
+  {
     path: "/proveedor",
     name: "Proveedor",
     icon: "ni ni-delivery-fast text-primary",
     component: <Proveedor />,
     layout: "/admin",
-  },
+  },*/
   {
     path: "/cliente",
     name: "Cliente",
@@ -70,6 +71,13 @@ var routes = [
     layout: "/admin",
   },
   {
+    path: "/usuario",
+    name: "Usuario",
+    icon: "ni ni-single-02 text-red",
+    component: <Usuario />,
+    layout: "/admin",
+  },
+  /*{
     path: "/caracteristica",
     name: "Caracteristica",
     icon: "ni ni-collection text-primary",
@@ -82,13 +90,13 @@ var routes = [
     icon: "ni ni-books text-primary",
     component: <Categoria />,
     layout: "/admin",
-  },*/
+  },
   {
     path: "/login",
     name: "Login",
     icon: "ni ni-key-25 text-info",
     component: <Login />,
     layout: "/auth",
-  }
+  },*/
 ];
 export default routes;
