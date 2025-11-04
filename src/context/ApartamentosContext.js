@@ -25,10 +25,11 @@ const ApartamentosProvider = ({children}) => {
     const { db } = state;
 
     let api = helpHttp();
-    let url = REACT_APP_API_URL+"apartamento";
+    let url = REACT_APP_API_URL+"apartamentos";
 
     useEffect(() => {
-        fetchData();
+        //fetchData();
+        fetchDataApartamentos();
     },[]);
 
     useEffect(() => {
@@ -36,6 +37,46 @@ const ApartamentosProvider = ({children}) => {
             fetchDataDetail();
         }
     },[toUpdate]);
+
+    const fetchDataApartamentos = () => {
+        setLoading(true);
+
+        let data = [
+            {
+                id: 1,
+                nombre: "La Playa",
+                direccion: "Direccion 1",
+                ciudad: "Ciudad 1",
+                ubicacion: "Ubicacion 1",
+                administrador: "Administrador 1",
+                celular: "Celular 1",
+                observacion: "Observacion 1"
+            },
+            {
+                id: 2,
+                nombre: "El Faro",
+                direccion: "Direccion 2",
+                ciudad: "Ciudad 2",
+                ubicacion: "Ubicacion 2",
+                administrador: "Administrador 2",
+                celular: "Celular 2",
+                observacion: "Observacion 2"
+            },
+            {
+                id: 3,
+                nombre: "San Agustin",
+                direccion: "Direccion 3",
+                ciudad: "Ciudad 3",
+                ubicacion: "Ubicacion 3",
+                administrador: "Administrador 3",
+                celular: "Celular 3",
+                observacion: "Observacion 3"
+            }
+        ]
+
+        dispatch({ type: TYPES.READ_ALL_DATA, payload: data });
+        setLoading(false);
+    };
 
     const fetchData = () => {
         setLoading(true);
