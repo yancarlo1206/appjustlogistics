@@ -28,8 +28,7 @@ const EdificiosProvider = ({children}) => {
     let url = REACT_APP_API_URL+"edificio";
 
     useEffect(() => {
-        //fetchData();
-        fetchDataEdificio();
+        fetchData();
     },[]);
 
     useEffect(() => {
@@ -37,52 +36,6 @@ const EdificiosProvider = ({children}) => {
             fetchDataDetail();
         }
     },[toUpdate]);
-
-    const fetchDataEdificio = () => {
-        setLoading(true);
-        let data = [
-  {
-    id: 1,
-    nombre: "Torre Santander",
-    direccion: "Avenida 4 #12-45",
-    ciudad: "Cúcuta",
-    ubicacion: "Zona Centro",
-    administrador: "Julián Rodríguez",
-    celular: "3104567890",
-    fecha: "2024-01-15",
-    estado: "Activo",
-    observacion: "Edificio moderno con 10 pisos, parqueadero cubierto y gimnasio."
-  },
-  {
-    id: 2,
-    nombre: "Conjunto Los Almendros",
-    direccion: "Calle 8 #23-60",
-    ciudad: "El Zulia",
-    ubicacion: "Barrio La Primavera",
-    administrador: "Paola Guerrero",
-    celular: "3019876543",
-    fecha: "2024-02-10",
-    estado: "Inactivo",
-    observacion: "Actualmente en remodelación de zonas comunes y fachada."
-  },
-  {
-    id: 3,
-    nombre: "Residencias El Mirador",
-    direccion: "Carrera 6 #15-20",
-    ciudad: "Los Patios",
-    ubicacion: "Sector La Sabana",
-    administrador: "Andrés Carvajal",
-    celular: "3201234567",
-    fecha: "2024-03-05",
-    estado: "Activo",
-    observacion: "Cuenta con vista panorámica, zona verde y portería 24 horas."
-  }
-];
-
-
-        dispatch({ type: TYPES.READ_ALL_DATA, payload: data });
-        setLoading(false);
-    };
 
     const fetchData = () => {
         setLoading(true);

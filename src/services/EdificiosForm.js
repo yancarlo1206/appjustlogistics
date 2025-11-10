@@ -49,27 +49,13 @@ export const validationsForm = (form) => {
     } else{
         errores.celular = "";
     }
-     if (!form.fecha) {
-        errores.fecha = "Please the field is required.";
-    } else if (!regexText40.test(form.fecha.trim())) {
-        errores.fecha = "The field accepts up to 40 characters.";
-    } else{
-        errores.fecha = "";
-    }
-     if (!form.estado) {
+ 
+    if (!form.estado) {
         errores.estado = "Please the field is required.";
-    } else if (!regexText40.test(form.estado.trim())) {
+    } else if (!regexText40.test(form.estado)) {
         errores.estado = "The field accepts up to 40 characters.";
     } else{
         errores.estado = "";
-    }
-
-    if (!form.observacion) {
-        errores.observacion = "Please the field is required.";
-    } else if (!regexText40.test(form.observacion.trim())) {
-        errores.observacion = "The field accepts up to 40 characters.";
-    } else{
-        errores.observacion = "";
     }
 
     return errores;

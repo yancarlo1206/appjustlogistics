@@ -25,11 +25,10 @@ const ApartamentosProvider = ({children}) => {
     const { db } = state;
 
     let api = helpHttp();
-    let url = REACT_APP_API_URL+"apartamentos";
+    let url = REACT_APP_API_URL+"apartamento";
 
     useEffect(() => {
-        //fetchData();
-        fetchDataApartamentos();
+        fetchData();
     },[]);
 
     useEffect(() => {
@@ -37,38 +36,6 @@ const ApartamentosProvider = ({children}) => {
             fetchDataDetail();
         }
     },[toUpdate]);
-
-    const fetchDataApartamentos = () => {
-        setLoading(true);
-
-        let data = [
-  {
-    id: 1,
-    nombre: "Apartamento 301",
-    edificio: "Torre Santander",
-    precio: "$250.000.000",
-    observacion: "Vista hacia el parque, incluye garaje cubierto."
-  },
-  {
-    id: 2,
-    nombre: "Apartamento 204",
-    edificio: "Conjunto Los Almendros",
-    precio: "$180.000.000",
-    observacion: "Ubicado en El Zulia, segundo piso, buena iluminación natural."
-  },
-  {
-    id: 3,
-    nombre: "Apartamento 502",
-    edificio: "Residencias El Mirador",
-    precio: "$320.000.000",
-    observacion: "En Los Patios, vista panorámica y acceso a zona social."
-  }
-];
-
-
-        dispatch({ type: TYPES.READ_ALL_DATA, payload: data });
-        setLoading(false);
-    };
 
     const fetchData = () => {
         setLoading(true);
