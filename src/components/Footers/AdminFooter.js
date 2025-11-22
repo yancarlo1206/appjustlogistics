@@ -25,7 +25,7 @@ const Footer = () => {
     <footer className="footer">
       <Row className="align-items-center justify-content-xl-between">
         <Col xl="6">
-          <div className="copyright text-center text-xl-left text-muted">
+          {/*<div className="copyright text-center text-xl-left text-muted">
             © {new Date().getFullYear()}{" "}
             <a
               className="font-weight-bold ml-1"
@@ -35,11 +35,11 @@ const Footer = () => {
             >
               Creative Tim
             </a>
-          </div>
+          </div>*/}
         </Col>
 
         <Col xl="6">
-          <Nav className="nav-footer justify-content-center justify-content-xl-end">
+          {/*<Nav className="nav-footer justify-content-center justify-content-xl-end">
             <NavItem>
               <NavLink
                 href="https://www.creative-tim.com?ref=adr-admin-footer"
@@ -80,6 +80,7 @@ const Footer = () => {
               </NavLink>
             </NavItem>
           </Nav>
+          */}
         </Col>
       </Row>
     </footer>

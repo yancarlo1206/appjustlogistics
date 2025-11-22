@@ -62,7 +62,7 @@ const Login = () => {
           <Card className="bg-secondary shadow border-0">
             <CardBody className="px-lg-5 py-lg-5">
               <div className="text-center text-muted mb-4">
-                <small>Sign in with credentials</small>
+                <small>Iniciar sesión con credenciales</small>
               </div>
               <Form role="form">
                 <FormGroup className="mb-3">
@@ -113,7 +113,7 @@ const Login = () => {
                       </div>
                   </InputGroup>
                 </FormGroup>
-                <div className="custom-control custom-control-alternative custom-checkbox">
+                {/*<div className="custom-control custom-control-alternative custom-checkbox">
                   <input
                     className="custom-control-input"
                     id=" customCheckLogin"
@@ -125,7 +125,7 @@ const Login = () => {
                   >
                     <span className="text-muted">Remember me</span>
                   </label>
-                </div>
+                </div>*/}
                 <div className="text-center">
                   <Button
                   className='btn btn-primary my-4'
@@ -139,7 +139,7 @@ const Login = () => {
               </Form>
             </CardBody>
           </Card>
-          <Row className="mt-3">
+          {/*<Row className="mt-3">
             <Col xs="6">
               <a
                 className="text-light"
@@ -159,6 +159,7 @@ const Login = () => {
               </a>
             </Col>
           </Row>
+          */}
         </Col>
       </>
     );

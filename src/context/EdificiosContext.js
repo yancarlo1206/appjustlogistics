@@ -88,6 +88,7 @@ const EdificiosProvider = ({children}) => {
         let endpoint = url+"/"+data.id;
         let newData = data;
         delete newData.id;
+        delete newData.fecha;
         let options = {
             body: newData,
             headers: {"content-type":"application/json"}
