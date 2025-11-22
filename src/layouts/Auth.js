@@ -28,6 +28,8 @@ import { LoginProvider } from "context/LoginContext";
 import { NotificationProvider } from "context/NotificationContext";
 import { LoadingProvider } from "context/LoadingContext";
 
+import { useAuth } from "../hooks/useAuth";
+
 
 import routes from "routes.js";
 
@@ -46,6 +48,8 @@ const Auth = (props) => {
     document.scrollingElement.scrollTop = 0;
     mainContent.current.scrollTop = 0;
   }, [location]);
+
+  const { isAuthenticated } = useAuth();
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -99,8 +103,8 @@ const Auth = (props) => {
             <NotificationProvider>
             <LoginProvider>
             <Routes>
-              {getRoutes(routes)}
-              <Route path="*" element={<Navigate to="/auth/login" replace />} />
+              {!isAuthenticated() ? getRoutes(routes):""}
+              <Route path="*" element={<Navigate to="/admin/cotizacion" replace />} />
             </Routes>
             </LoginProvider>
             </NotificationProvider>

@@ -28,6 +28,8 @@ import { NotificationProvider } from "context/NotificationContext";
 import { LoadingProvider } from "context/LoadingContext";
 import { InternetConnectionProvider } from "context/InternetConnectionContext";
 
+import { useAuth } from "../hooks/useAuth";
+
 import routes from "routes.js";
 
 const Admin = (props) => {
@@ -40,16 +42,20 @@ const Admin = (props) => {
     mainContent.current.scrollTop = 0;
   }, [location]);
 
+  const { isAuthenticated } = useAuth();
+
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
-        return (
-          <Route 
-            path={`${prop.path}/*`} 
-            element={prop.component} 
-            key={key} 
-          />
-        );
+        if (isAuthenticated()) {
+          return (
+            <Route 
+              path={`${prop.path}/*`} 
+              element={prop.component} 
+              key={key} 
+            />
+          );
+        }
       } else {
         return null;
       }
@@ -88,8 +94,8 @@ const Admin = (props) => {
           brandText={getBrandText(props?.location?.pathname)}
         />
         <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/admin/index" replace />} />
+          {isAuthenticated() ? getRoutes(routes):""}
+          <Route path="*" element={<Navigate to="/auth/login" replace />} />
         </Routes>
         <Container fluid>
           <AdminFooter />

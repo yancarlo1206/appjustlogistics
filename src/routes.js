@@ -72,6 +72,7 @@ var routes = [
     icon: "ni ni-key-25 text-info",
     component: <Login />,
     layout: "/auth",
+    invisible: true
   },
 ];
 export default routes;

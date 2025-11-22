@@ -100,7 +100,7 @@ const AdminNavbar = (props) => {
                     onClick={logOut}
                   >
                     <i className="ni ni-user-run" />
-                    <span>Logout</span>
+                    <span>Cerrar Sesión</span>
                   </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
