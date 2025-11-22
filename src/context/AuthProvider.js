@@ -54,6 +54,11 @@ export const AuthProvider = ({children}) => {
         return decode?.sub ? decode.sub : "";
     }
 
+    const getTipoUser = () => {
+        let decode = getDecodeToken();
+        return decode?.tipoUsuario ? decode.tipoUsuario : "";
+    }
+
     const getNameRole = () => {
         let decode = getDecodeToken();
         return decode?.roles ? decode.roles : "";
@@ -132,7 +137,7 @@ export const AuthProvider = ({children}) => {
     // }
 
     const data = {auth, setAuth, logout, isAuthenticated, getNameUser, getNameRole, checkTokenExpiry, 
-        getCurrentUser, validatePermission };
+        getCurrentUser, validatePermission, getTipoUser };
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 }
 

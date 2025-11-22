@@ -38,7 +38,7 @@ import { useAuth } from "hooks/useAuth";
 
 const AdminNavbar = (props) => {
 
-  const { logout, getNameUser } = useAuth();
+  const { logout, getNameUser, getTipoUser } = useAuth();
   
   const logOut = () => {
     logout();
@@ -73,7 +73,7 @@ const AdminNavbar = (props) => {
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
                 <DropdownItem className="noti-title" header tag="div">
-                  <h6 className="text-overflow m-0">Bienvenido, {getNameUser()}!</h6>
+                  <h6 className="text-overflow m-0">Usuario {getTipoUser()}</h6>
                 </DropdownItem>
                 {/*<DropdownItem to="/admin/user-profile" tag={Link}>
                   <i className="ni ni-single-02" />
