@@ -15,6 +15,8 @@ const EdificiosProvider = ({children}) => {
     const [detail, setDetail] = useState({});
     const [module, setModule] = useState();
 
+    const [estadoEdificio, setEstadoEdificio] = useState([{"id":"1","text":"ACTIVO"},{"id":"0","text":"INACTIVO"}]);
+
     const navigate = useNavigate();
     const { REACT_APP_API_URL } = process.env;
 
@@ -129,7 +131,7 @@ const EdificiosProvider = ({children}) => {
 
     const data = { 
         db, detail, setToDetail, setToUpdate, updateData, saveData, deleteData, module, 
-        setModule, setDetail 
+        setModule, setDetail, estadoEdificio
     };
 
     return <EdificiosContext.Provider value={data}>{children}</EdificiosContext.Provider>;

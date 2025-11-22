@@ -26,22 +26,6 @@ export const validationsForm = (form) => {
         errores.ciudad = "";
     }
 
-    if (!form.ubicacion) {
-        errores.ubicacion = "Please the field is required.";
-    } else if (!regexText40.test(form.ubicacion.trim())) {
-        errores.ubicacion = "The field accepts up to 40 characters.";
-    } else{
-        errores.ubicacion = "";
-    }
-
-    if (!form.administrador) {
-        errores.administrador = "Please the field is required.";
-    } else if (!regexText40.test(form.administrador.trim())) {
-        errores.administrador = "The field accepts up to 40 characters.";
-    } else{
-        errores.administrador = "";
-    }
-
     if (!form.celular) {
         errores.celular = "Please the field is required.";
     } else if (!regexText40.test(form.celular.trim())) {

@@ -31,8 +31,9 @@ function List({ tab }) {
     { name: "Nombre", selector: row => row.nombre, sortable: true },
     { name: "Direccion", selector: row => row.direccion, sortable: true },
     { name: "Ciudad", selector: row => row.ciudad, sortable: true },
-    { name: "Ubicacion", selector: row => row.ubicacion, sortable: true },
-    { name: "Estado", selector: row => row.estado, sortable: true },
+    { name: "Estado", width: "200px", cell: row => (
+      row.estado ? "Activo" : "Inactivo"
+    )},
     { name: "Acciones", width: "200px", cell: row => (
       <> 
       <Link className='btn btn-primary btn-sm'
