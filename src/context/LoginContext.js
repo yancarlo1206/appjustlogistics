@@ -30,7 +30,7 @@ const LoginProvider = ({children}) => {
             api.post(endpoint, options).then((res) => {
                 if(!res.err){
                     localStorage.setItem("token", JSON.stringify(res.token));
-                    navigate('/admin/dashboard/');
+                    navigate('/admin/cotizacion/');
                     setType("success");
                     setMessage("Inicio de sesión exitoso");
                     setStatus(1);
