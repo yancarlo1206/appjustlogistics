@@ -22,6 +22,8 @@ export const validationsForm = (form) => {
 
     if (!form.precio) {
         errores.precio = "Please the field is required.";
+    } else if (isNaN(form.precio) || Number(form.precio) < 0) {
+        errores.precio = "The field must be a valid number.";
     } else{
         errores.precio = "";
     }

@@ -96,7 +96,7 @@ const Formulario = ( ) => {
                       </div>
                     </CardHeader>
                     <CardBody>
-                        <Form>
+                        <Form autoComplete="off">
                             <div className="pl-lg-4">
                             <Row>
                                 <Col lg="12">
@@ -201,13 +201,17 @@ const Formulario = ( ) => {
                                         className="form-control"
                                         id="input-precio"
                                         placeholder=""
-                                        type="text"
+                                        type="number"
                                         name="precio"
                                         required="required"
                                         invalid={errors.precio !== ""}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         defaultValue={data.precio}
+                                        
+                                        inputMode="numeric"
+                                        min={0}
+                                        step="any"
                                         />
                                         <div className="invalid-feedback">
                                             {errors.precio}

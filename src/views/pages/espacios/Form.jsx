@@ -97,7 +97,7 @@ const Formulario = ( ) => {
                       </div>
                     </CardHeader>
                     <CardBody>
-                        <Form>
+                        <Form autoComplete="off">
                             <div className="pl-lg-4">
                             <Row>
                                 <Col lg="6">
@@ -193,19 +193,23 @@ const Formulario = ( ) => {
                                         className="form-control-label"
                                         htmlFor="input-alto"
                                         >
-                                        Alto <span className="text-danger">*</span>
+                                        Alto (cm) <span className="text-danger">*</span>
                                         </label>
                                         <Input
                                         className="form-control"
                                         id="input-alto"
                                         placeholder=""
-                                        type="text"
+                                        type="number"
                                         name="alto"
                                         required="required"
                                         invalid={errors.alto !== ""}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         defaultValue={data.alto}
+                                        autoComplete="off"
+                                        inputMode="numeric"
+                                        min={0}
+                                        step="any"
                                         />
                                         <div className="invalid-feedback">
                                             {errors.alto}
@@ -218,19 +222,23 @@ const Formulario = ( ) => {
                                         className="form-control-label"
                                         htmlFor="input-ancho"
                                         >
-                                        Ancho <span className="text-danger">*</span>
+                                        Ancho (cm) <span className="text-danger">*</span>
                                         </label>
                                         <Input
                                         className="form-control"
                                         id="input-ancho"
                                         placeholder=""
-                                        type="text"
+                                        type="number"
                                         name="ancho"
                                         required="required"
                                         invalid={errors.ancho !== ""}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         defaultValue={data.ancho}
+                                        autoComplete="off"
+                                        inputMode="numeric"
+                                        min={0}
+                                        step="any"
                                         />
                                         <div className="invalid-feedback">
                                             {errors.ancho}
@@ -249,13 +257,17 @@ const Formulario = ( ) => {
                                         className="form-control"
                                         id="input-factor"
                                         placeholder=""
-                                        type="text"
+                                        type="number"
                                         name="factor"
                                         required="required"
                                         invalid={errors.factor !== ""}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         defaultValue={data.factor}
+                                        autoComplete="off"
+                                        inputMode="numeric"
+                                        min={0}
+                                        step="any"
                                         />
                                         <div className="invalid-feedback">
                                             {errors.factor}
@@ -274,13 +286,17 @@ const Formulario = ( ) => {
                                         className="form-control"
                                         id="input-precio"
                                         placeholder=""
-                                        type="text"
+                                        type="number"
                                         name="precio"
                                         required="required"
                                         invalid={errors.precio !== ""}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         defaultValue={data.precio}
+                                        autoComplete="off"
+                                        inputMode="numeric"
+                                        min={0}
+                                        step="any"
                                         />
                                         <div className="invalid-feedback">
                                             {errors.precio}
@@ -366,7 +382,7 @@ const Formulario = ( ) => {
                                 </Link>
                             </Row>
                             </div>
-                        </Form>
+                        </Form >
                     </CardBody>
                 </Card>
                 </div>

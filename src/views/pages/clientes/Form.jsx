@@ -86,7 +86,7 @@ const Formulario = ( ) => {
                       </div>
                     </CardHeader>
                     <CardBody>
-                        <Form>
+                        <Form autoComplete="off">
                             <div className="pl-lg-4">
                             <Row>
                                 <Col lg="6">
@@ -126,13 +126,17 @@ const Formulario = ( ) => {
                                         className="form-control"
                                         id="input-celular"
                                         placeholder=""
-                                        type="text"
+                                        type="number"
                                         name="celular"
                                         required="required"
                                         invalid={errors.celular !== ""}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         defaultValue={data.celular}
+                                        autoComplete="off"
+                                        inputMode="numeric"
+                                        min={0}
+                                        step="any"
                                         />
                                         <div className="invalid-feedback">
                                             {errors.celular}
@@ -151,13 +155,14 @@ const Formulario = ( ) => {
                                         className="form-control"
                                         id="input-correo"
                                         placeholder=""
-                                        type="text"
+                                        type="email"
                                         name="correo"
                                         required="required"
                                         invalid={errors.correo !== ""}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         defaultValue={data.correo}
+                                        autoComplete="off"
                                         />
                                         <div className="invalid-feedback">
                                             {errors.correo}

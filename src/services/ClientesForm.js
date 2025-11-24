@@ -10,18 +10,20 @@ export const validationsForm = (form) => {
         errores.nombre = "";
     }
 
+    let regexCelular = /^\d{7,12}$/;
     if (!form.celular) {
         errores.celular = "Please the field is required.";
-    } else if (!regexText40.test(form.celular.trim())) {
-        errores.celular = "The field accepts up to 40 characters.";
+    } else if (!regexCelular.test(form.celular.trim())) {
+        errores.celular = "Only numbers allowed, min 7 and max 12 digits.";
     } else{
         errores.celular = "";
     }
 
+    let regexCorreo = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/;
     if (!form.correo) {
         errores.correo = "Please the field is required.";
-    } else if (!regexText40.test(form.correo.trim())) {
-        errores.correo = "The field accepts up to 40 characters.";
+    } else if (!regexCorreo.test(form.correo.trim())) {
+        errores.correo = "The field must be a valid email address.";
     } else{
         errores.correo = "";
     }

@@ -74,24 +74,24 @@ const Formulario = ( ) => {
     }
 
     return (
-      <>
-        <Header />
-            <Container className="mt--7" fluid>
-              <Row>
-                <div className="col">
-                  <Card className="shadow">
-                    <CardHeader className="">
-                      <div className="align-items-center row">
-                        <div className="col-11">
-                          <h3 className="mb-0">{module?.toUpperCase()} EDIFICIO</h3>
-                          <p className="text-sm mb-0">
-                            Formulario de gestion de edificios
-                          </p>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardBody>
-                        <Form>
+            <>
+                <Header />
+                        <Container className="mt--7" fluid>
+                            <Row>
+                                <div className="col">
+                                    <Card className="shadow">
+                                        <CardHeader className="">
+                                            <div className="align-items-center row">
+                                                <div className="col-11">
+                                                    <h3 className="mb-0">{module?.toUpperCase()} EDIFICIO</h3>
+                                                    <p className="text-sm mb-0">
+                                                        Formulario de gestion de edificios
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </CardHeader>
+                                        <CardBody>
+                                                <Form autoComplete="off">
                             <div className="pl-lg-4">
                             <Row>
                                 <Col lg="6">
@@ -163,6 +163,10 @@ const Formulario = ( ) => {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         defaultValue={data.celular}
+                                        autoComplete="off"
+                                        inputMode="numeric"
+                                        maxLength={12}
+                                        pattern="[0-9]*"
                                         />
                                         <div className="invalid-feedback">
                                             {errors.celular}
