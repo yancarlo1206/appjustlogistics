@@ -18,6 +18,10 @@
 
 // reactstrap components
 import { useRef, useContext, useEffect } from "react";
+import ClientesContext from "context/ClientesContext";
+import CotizacionContext from "context/CotizacionContext";
+import ApartamentosContext from "context/ApartamentosContext";
+import EdificiosContext from "context/EdificiosContext";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 import NotificationAlert from "react-notification-alert";
@@ -30,17 +34,29 @@ import Loading from "components/Loading/Loading.js";
 
 const Header = () => {
 
-  const notificationAlertRef = useRef(null);
 
+  const notificationAlertRef = useRef(null);
   const { status, type, message, setStatus } = useContext(NotificationContext);
   const { loading } = useContext(LoadingContext);
+
+
+  // Contextos para datos reales con fallback si el contexto es undefined
+  const { db: clientesDb = [] } = useContext(ClientesContext) || {};
+  const { db: cotizacionesDb = [] } = useContext(CotizacionContext) || {};
+  const { db: apartamentosDb = [] } = useContext(ApartamentosContext) || {};
+  const { db: edificiosDb = [] } = useContext(EdificiosContext) || {};
+
+  const totalClientes = clientesDb?.length || 0;
+  const totalCotizaciones = cotizacionesDb?.length || 0;
+  const totalApartamentos = apartamentosDb?.length || 0;
+  const totalEdificios = edificiosDb?.length || 0;
 
   useEffect(() => {
     if(status){
         Notification.viewNotification(type, message, notificationAlertRef);
         setStatus(0);
     }
-  },[status]);
+  },[status, type, message, setStatus]);
 
   return (
     <>
@@ -65,7 +81,7 @@ const Header = () => {
                           # Cotizaciones
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          21
+                          {totalCotizaciones}
                         </span>
                       </div>
                       <Col className="col-auto">
@@ -89,7 +105,7 @@ const Header = () => {
                           # Clientes
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          15
+                          {totalClientes}
                         </span>
                       </div>
                       <Col className="col-auto">
@@ -112,7 +128,7 @@ const Header = () => {
                         >
                           # Apartamentos
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">12</span>
+                        <span className="h2 font-weight-bold mb-0">{totalApartamentos}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -134,7 +150,7 @@ const Header = () => {
                         >
                           # Edificios
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">9</span>
+                        <span className="h2 font-weight-bold mb-0">{totalEdificios}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">

@@ -24,9 +24,14 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
+
 import { NotificationProvider } from "context/NotificationContext";
 import { LoadingProvider } from "context/LoadingContext";
 import { InternetConnectionProvider } from "context/InternetConnectionContext";
+import { ClientesProvider } from "context/ClientesContext";
+import { CotizacionProvider } from "context/CotizacionContext";
+import { ApartamentosProvider } from "context/ApartamentosContext";
+import { EdificiosProvider } from "context/EdificiosContext";
 
 import { useAuth } from "../hooks/useAuth";
 
@@ -86,23 +91,31 @@ const Admin = (props) => {
         }}
       />
       <LoadingProvider>
-      <NotificationProvider >
-      <InternetConnectionProvider >
-      <div className="main-content" ref={mainContent}>
-        <AdminNavbar
-          {...props}
-          brandText={getBrandText(props?.location?.pathname)}
-        />
-        <Routes>
-          {isAuthenticated() ? getRoutes(routes):""}
-          <Route path="*" element={<Navigate to="/auth/login" replace />} />
-        </Routes>
-        <Container fluid>
-          <AdminFooter />
-        </Container>
-      </div>
-      </InternetConnectionProvider>
-      </NotificationProvider>
+        <NotificationProvider>
+          <InternetConnectionProvider>
+            <ClientesProvider>
+              <CotizacionProvider>
+                <ApartamentosProvider>
+                  <EdificiosProvider>
+                    <div className="main-content" ref={mainContent}>
+                      <AdminNavbar
+                        {...props}
+                        brandText={getBrandText(props?.location?.pathname)}
+                      />
+                      <Routes>
+                        {isAuthenticated() ? getRoutes(routes) : ""}
+                        <Route path="*" element={<Navigate to="/auth/login" replace />} />
+                      </Routes>
+                      <Container fluid>
+                        <AdminFooter />
+                      </Container>
+                    </div>
+                  </EdificiosProvider>
+                </ApartamentosProvider>
+              </CotizacionProvider>
+            </ClientesProvider>
+          </InternetConnectionProvider>
+        </NotificationProvider>
       </LoadingProvider>
     </>
   );
