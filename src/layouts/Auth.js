@@ -67,15 +67,12 @@ const Auth = (props) => {
     <>
       <div className="main-content" ref={mainContent}>
         <AuthNavbar />
-        <div className="header bg-gradient-info py-7 py-lg-8">
+        <div className="header bg-gradient-default py-7 py-lg-8">
           <Container>
             <div className="header-body text-center mb-7">
               <Row className="justify-content-center">
                 <Col lg="5" md="6">
-                  <h1 className="text-white">¡Bienvenido!</h1>
-                  <p className="text-lead text-light">
-                   Sistema de gestión de Distriraga.
-                  </p>
+                  <h1 className="text-white">¡Bienvenido a JustLogistics!</h1>
                 </Col>
               </Row>
             </div>
@@ -100,14 +97,14 @@ const Auth = (props) => {
         <Container className="mt--8 pb-5">
           <Row className="justify-content-center">
             <LoadingProvider>
-            <NotificationProvider>
-            <LoginProvider>
-            <Routes>
-              {!isAuthenticated() ? getRoutes(routes):""}
-              <Route path="*" element={<Navigate to="/admin/cotizacion" replace />} />
-            </Routes>
-            </LoginProvider>
-            </NotificationProvider>
+              <NotificationProvider>
+                <LoginProvider>
+                  <Routes>
+                    {!isAuthenticated() ? getRoutes(routes) : ""}
+                    <Route path="*" element={<Navigate to="/admin/clientes" replace />} />
+                  </Routes>
+                </LoginProvider>
+              </NotificationProvider>
             </LoadingProvider>
           </Row>
         </Container>

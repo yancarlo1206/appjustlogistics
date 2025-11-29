@@ -10,14 +10,14 @@ import ReactBSAlert from "react-bootstrap-sweetalert";
 
 function List({ tab }) {
 
-  const { 
-    db:data, setDetail,  setToDetail, setToUpdate, setViewModal, setModule, deleteData
+  const {
+    db: data, setDetail, setToDetail, setToUpdate, setViewModal, setModule, deleteData
   } = useContext(ClientesContext);
 
   const [filter, setFilter] = useState("");
 
-  const[state, setState] = useState({});
-  const[idDelete, setIdDelete] = useState();
+  const [state, setState] = useState({});
+  const [idDelete, setIdDelete] = useState();
 
   const filteredData = data.filter(item =>
     Object.values(item)
@@ -28,28 +28,29 @@ function List({ tab }) {
 
   const columns = [
     { name: "ID", selector: row => row.id, sortable: true, width: "100px" },
-    { name: "Nombre", selector: row => row.nombre, sortable: true },
-    { name: "Celular", selector: row => row.celular, sortable: true },
-    { name: "Correo", selector: row => row.correo, sortable: true },
-    { name: "Estado", width: "200px", cell: row => (
-      row.estado ? "Activo" : "Inactivo"
-    )},
-    { name: "Acciones", width: "200px", cell: row => (
-      <> 
-      <Link className='btn btn-primary btn-sm'
+    { name: "Nit", selector: row => row.nit, sortable: true },
+    { name: "Razón Social", selector: row => row.razonsocial, sortable: true },
+    { name: "Nombre Contacto", selector: row => row.nombrecontacto, sortable: true },
+    { name: "Apellido Contacto", selector: row => row.apellidocontacto, sortable: true },
+    { name: "Telefono", selector: row => row.telefono, sortable: true },
+    {
+      name: "Acciones", width: "200px", cell: row => (
+        <>
+          <Link className='btn btn-primary btn-sm'
             color="primary"
-            to={"/admin/clientes/detail/"+row.id}
-        >
-        Detallar
-        </Link>
-      <Button
+            to={"/admin/clientes/detail/" + row.id}
+          >
+            Detallar
+          </Link>
+          <Button
             className='btn btn-danger btn-sm'
             onClick={e => handleDelete(e, row.id)}
-        >
+          >
             Eliminar
-      </Button>
-      </>
-    )}
+          </Button>
+        </>
+      )
+    }
   ];
 
   const confirmAlert = (id) => {
@@ -60,7 +61,7 @@ function List({ tab }) {
           style={{ display: "block" }}
           title="¿Estás seguro?"
           onCancel={() => hideAlert()}
-          onConfirm={() => {setIdDelete(id); hideAlert();}}
+          onConfirm={() => { setIdDelete(id); hideAlert(); }}
           showCancel
           confirmBtnBsStyle="primary"
           confirmBtnText="Si, Eliminarlo!"
@@ -79,17 +80,17 @@ function List({ tab }) {
       alert: null
     });
   };
-                
+
   useEffect(() => {
     setDetail({});
     setToUpdate(0);
-  },[]);
+  }, []);
 
   useEffect(() => {
-    if(idDelete){
+    if (idDelete) {
       deleteData(idDelete);
     }
-  },[idDelete]);
+  }, [idDelete]);
 
   const handleDelete = (e, id) => {
     e.preventDefault();
@@ -98,53 +99,53 @@ function List({ tab }) {
 
   return (
     <>
-    {state.alert}
-    <Header brandText="Edificios" />
-    <Container className="mt--7" fluid>
-      <Row>
-        <div className="col">
-          <Card className="shadow">
-            <CardHeader className="">
-              <div className="align-items-center row">
-                <div className="col-11">
-                  <h3 className="mb-0">Clientes</h3>
-                  <p className="text-sm mb-0">
-                    Listado de clientes registrados en el sistema
-                  </p>
+      {state.alert}
+      <Header brandText="Edificios" />
+      <Container className="mt--7" fluid>
+        <Row>
+          <div className="col">
+            <Card className="shadow">
+              <CardHeader className="">
+                <div className="align-items-center row">
+                  <div className="col-11">
+                    <h3 className="mb-0">Clientes</h3>
+                    <p className="text-sm mb-0">
+                      Listado de clientes registrados en el sistema
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </CardHeader>
-            <CardBody>
-              <FormGroup>
-                <Label for="buscar">Buscar</Label>
-                <Input
-                  id="buscar"
-                        type="text"
-                        placeholder="Buscar..."
-                        value={filter}
-                        onChange={e => setFilter(e.target.value)}
-                      />
-                    </FormGroup>
-                    <DataTable
-                      columns={columns}
-                      data={filteredData}
-                      pagination
-                      highlightOnHover
-                    />
-                    <div className="m-3">
-                      <Link 
-                        className='btn btn-primary'
-                        color="primary"
-                        to={"add"}
-                      >
-                        Agregar Cliente
-                      </Link>
-                    </div>
-            </CardBody>
-          </Card>
-        </div>
-      </Row>
-    </Container>
+              </CardHeader>
+              <CardBody>
+                <FormGroup>
+                  <Label for="buscar">Buscar</Label>
+                  <Input
+                    id="buscar"
+                    type="text"
+                    placeholder="Buscar..."
+                    value={filter}
+                    onChange={e => setFilter(e.target.value)}
+                  />
+                </FormGroup>
+                <DataTable
+                  columns={columns}
+                  data={filteredData}
+                  pagination
+                  highlightOnHover
+                />
+                <div className="m-3">
+                  <Link
+                    className='btn btn-primary'
+                    color="primary"
+                    to={"add"}
+                  >
+                    Agregar Cliente
+                  </Link>
+                </div>
+              </CardBody>
+            </Card>
+          </div>
+        </Row>
+      </Container>
     </>
   );
 }

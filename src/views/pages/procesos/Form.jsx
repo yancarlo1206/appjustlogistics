@@ -2,26 +2,26 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { Button, Card, CardHeader, CardBody, FormGroup, Form, Input, Container, Row, Col } from "reactstrap";
 
 import { Link, useParams } from "react-router-dom";
-import ClientesContext from "context/ClientesContext";
-import ClientesFormValidate from "../../../services/ClientesForm";
+import ProcesosContext from "context/ProcesosContext";
+import ProcesosFormValidate from "../../../services/ProcesosForm";
 import { useForm } from "hooks/useForm";
 import Header from "components/Headers/Header";
 
 const initialForm = {
-    nit: "",
-    razonsocial: "",
-    nombrecontacto: "",
-    apellidocontacto: "",
-    correo: "",
-    telefono: ""
+    cliente: "",
+    nombrecontenedor: "",
+    tipotransporte: "",
+    estado: "",
+    fechafinalizacion: "",
+    fechainicio: "",
 };
 
 const Formulario = () => {
 
     const {
         detail: data, updateData, saveData, setModule, module, setToDetail, setDetail,
-        setToUpdate
-    } = useContext(ClientesContext);
+        setToUpdate, cliente, tipoTransporte
+    } = useContext(ProcesosContext);
 
     const {
         validateInit,
@@ -35,7 +35,7 @@ const Formulario = () => {
         handleChange,
         handleBlur,
         handleSubmit,
-    } = useForm(initialForm, ClientesFormValidate.validationsForm);
+    } = useForm(initialForm, ProcesosFormValidate.validationsForm);
 
     const { id } = useParams();
 
@@ -80,9 +80,9 @@ const Formulario = () => {
                             <CardHeader className="">
                                 <div className="align-items-center row">
                                     <div className="col-11">
-                                        <h3 className="mb-0">{module?.toUpperCase()} CLIENTE</h3>
+                                        <h3 className="mb-0">{module?.toUpperCase()} PROCESO</h3>
                                         <p className="text-sm mb-0">
-                                            Formulario de gestion de clientes
+                                            Formulario de gestion de procesos
                                         </p>
                                     </div>
                                 </div>
@@ -95,24 +95,30 @@ const Formulario = () => {
                                                 <FormGroup>
                                                     <label
                                                         className="form-control-label"
-                                                        htmlFor="input-nit"
+                                                        htmlFor="input-cliente"
                                                     >
-                                                        Nit <span className="text-danger">*</span>
+                                                        Cliente <span className="text-danger">*</span>
                                                     </label>
                                                     <Input
                                                         className="form-control"
-                                                        id="input-nit"
-                                                        placeholder=""
-                                                        type="text"
-                                                        name="nit"
+                                                        id="input-cliente"
+                                                        type="select"
+                                                        name="cliente"
                                                         required="required"
-                                                        invalid={errors.nit !== ""}
+                                                        value={form.cliente}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
-                                                        defaultValue={data.nit}
-                                                    />
+                                                        invalid={errors.cliente !== ""}
+                                                    >
+                                                        <option value="" hidden></option>
+                                                        {cliente.map(item => (
+                                                            <option key={item.id} value={item.id}>
+                                                                {item.text}
+                                                            </option>
+                                                        ))};
+                                                    </Input>
                                                     <div className="invalid-feedback">
-                                                        {errors.nit}
+                                                        {errors.cliente}
                                                     </div>
                                                 </FormGroup>
                                             </Col>
@@ -120,24 +126,24 @@ const Formulario = () => {
                                                 <FormGroup>
                                                     <label
                                                         className="form-control-label"
-                                                        htmlFor="input-razonsocial"
+                                                        htmlFor="input-nombrecontenedor"
                                                     >
-                                                        Razón Social <span className="text-danger">*</span>
+                                                        Nombre Contenedor <span className="text-danger">*</span>
                                                     </label>
                                                     <Input
                                                         className="form-control"
-                                                        id="input-razonsocial"
+                                                        id="input-nombrecontenedor"
                                                         placeholder=""
                                                         type="text"
-                                                        name="razonsocial"
+                                                        name="nombrecontenedor"
                                                         required="required"
-                                                        invalid={errors.razonsocial !== ""}
+                                                        invalid={errors.nombrecontenedor !== ""}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
-                                                        defaultValue={data.razonsocial}
+                                                        defaultValue={data.nombrecontenedor}
                                                     />
                                                     <div className="invalid-feedback">
-                                                        {errors.razonsocial}
+                                                        {errors.nombrecontenedor}
                                                     </div>
                                                 </FormGroup>
                                             </Col>
@@ -145,24 +151,24 @@ const Formulario = () => {
                                                 <FormGroup>
                                                     <label
                                                         className="form-control-label"
-                                                        htmlFor="input-nombrecontacto"
+                                                        htmlFor="input-fechainicio"
                                                     >
-                                                        Nombre Contacto <span className="text-danger">*</span>
+                                                        Fecha Inicio <span className="text-danger">*</span>
                                                     </label>
                                                     <Input
                                                         className="form-control"
-                                                        id="input-nombrecontacto"
+                                                        id="input-fechainicio"
                                                         placeholder=""
-                                                        type="text"
-                                                        name="nombrecontacto"
+                                                        type="date"
+                                                        name="fechainicio"
                                                         required="required"
-                                                        invalid={errors.nombrecontacto !== ""}
+                                                        invalid={errors.fechainicio !== ""}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
-                                                        defaultValue={data.nombrecontacto}
+                                                        defaultValue={data.fechainicio}
                                                     />
                                                     <div className="invalid-feedback">
-                                                        {errors.nombrecontacto}
+                                                        {errors.fechainicio}
                                                     </div>
                                                 </FormGroup>
                                             </Col>
@@ -170,24 +176,24 @@ const Formulario = () => {
                                                 <FormGroup>
                                                     <label
                                                         className="form-control-label"
-                                                        htmlFor="input-apellidocontacto"
+                                                        htmlFor="input-fechafinalizacion"
                                                     >
-                                                        Apellido Contacto <span className="text-danger">*</span>
+                                                        Fecha Finalización <span className="text-danger">*</span>
                                                     </label>
                                                     <Input
                                                         className="form-control"
-                                                        id="input-apellidocontacto"
+                                                        id="input-fechafinalizacion"
                                                         placeholder=""
-                                                        type="text"
-                                                        name="apellidocontacto"
+                                                        type="date"
+                                                        name="fechafinalizacion"
                                                         required="required"
-                                                        invalid={errors.apellidocontacto !== ""}
+                                                        invalid={errors.fechafinalizacion !== ""}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
-                                                        defaultValue={data.apellidocontacto}
+                                                        defaultValue={data.fechafinalizacion}
                                                     />
                                                     <div className="invalid-feedback">
-                                                        {errors.apellidocontacto}
+                                                        {errors.fechafinalizacion}
                                                     </div>
                                                 </FormGroup>
                                             </Col>
@@ -195,25 +201,30 @@ const Formulario = () => {
                                                 <FormGroup>
                                                     <label
                                                         className="form-control-label"
-                                                        htmlFor="input-correo"
+                                                        htmlFor="input-tipotransporte"
                                                     >
-                                                        Correo <span className="text-danger">*</span>
+                                                        Tipo de Transporte <span className="text-danger">*</span>
                                                     </label>
                                                     <Input
                                                         className="form-control"
-                                                        id="input-correo"
-                                                        placeholder=""
-                                                        type="email"
-                                                        name="correo"
+                                                        id="input-tipotransporte"
+                                                        type="select"
+                                                        name="tipotransporte"
                                                         required="required"
-                                                        invalid={errors.correo !== ""}
+                                                        value={form.tipotransporte}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
-                                                        defaultValue={data.correo}
-                                                        autoComplete="off"
-                                                    />
+                                                        invalid={errors.tipotransporte !== ""}
+                                                    >
+                                                        <option value="" hidden></option>
+                                                        {tipoTransporte.map(item => (
+                                                            <option key={item.id} value={item.id}>
+                                                                {item.text}
+                                                            </option>
+                                                        ))};
+                                                    </Input>
                                                     <div className="invalid-feedback">
-                                                        {errors.correo}
+                                                        {errors.tipotransporte}
                                                     </div>
                                                 </FormGroup>
                                             </Col>
@@ -221,24 +232,24 @@ const Formulario = () => {
                                                 <FormGroup>
                                                     <label
                                                         className="form-control-label"
-                                                        htmlFor="input-telefono"
+                                                        htmlFor="input-estado"
                                                     >
-                                                        Telefono <span className="text-danger">*</span>
+                                                        Estado <span className="text-danger">*</span>
                                                     </label>
                                                     <Input
                                                         className="form-control"
-                                                        id="input-telefono"
+                                                        id="input-estado"
                                                         placeholder=""
                                                         type="text"
-                                                        name="telefono"
+                                                        name="estado"
                                                         required="required"
-                                                        invalid={errors.telefono !== ""}
+                                                        invalid={errors.estado !== ""}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
-                                                        defaultValue={data.telefono}
+                                                        defaultValue={data.estado}
                                                     />
                                                     <div className="invalid-feedback">
-                                                        {errors.telefono}
+                                                        {errors.estado}
                                                     </div>
                                                 </FormGroup>
                                             </Col>
@@ -264,7 +275,7 @@ const Formulario = () => {
                                             <Link
                                                 className="btn btn-danger"
                                                 color="default"
-                                                to={"/admin/clientes"}
+                                                to={"/admin/apartamentos"}
                                             >
                                                 Cancelar
                                             </Link>

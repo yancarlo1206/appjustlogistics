@@ -6,14 +6,17 @@ import NotificationContext from "context/NotificationContext";
 import LoadingContext from "context/LoadingContext";
 import { useNavigate } from "react-router";
 
-const ClientesContext = createContext();
+const ProcesosContext = createContext();
 
-const ClientesProvider = ({ children }) => {
+const ProcesosProvider = ({ children }) => {
 
     const [toDetail, setToDetail] = useState();
     const [toUpdate, setToUpdate] = useState();
     const [detail, setDetail] = useState({});
     const [module, setModule] = useState();
+
+    const [cliente, setCliente] = useState([]);
+    const [tipoTransporte, setTipoTransporte] = useState([{ id: "AEREO", text: 'Aéreo' }, { id: "MARITIMO", text: 'Marítimo' }, { id: "TERRESTRE", text: 'Terrestre' }]);
 
     const navigate = useNavigate();
     const { REACT_APP_API_URL } = process.env;
@@ -25,7 +28,7 @@ const ClientesProvider = ({ children }) => {
     const { db } = state;
 
     let api = helpHttp();
-    let url = REACT_APP_API_URL + "cliente";
+    let url = REACT_APP_API_URL + "proceso";
 
     useEffect(() => {
         fetchData();
@@ -36,6 +39,12 @@ const ClientesProvider = ({ children }) => {
             fetchDataDetail();
         }
     }, [toUpdate]);
+
+    useEffect(() => {
+        if (module) {
+            fetchDataCliente();
+        }
+    }, [module]);
 
     const fetchData = () => {
         setLoading(true);
@@ -53,16 +62,37 @@ const ClientesProvider = ({ children }) => {
         setLoading(true);
         url = url + "/" + toUpdate;
         api.get(url).then((res) => {
-            setDetail(res.data);
+            const detail = {
+                ...res.data,
+                cliente: res.data?.cliente?.id ?? null,
+            };
+            setDetail(detail);
             setLoading(false);
+        });
+    };
+
+    const fetchDataCliente = () => {
+        let urlFetch = REACT_APP_API_URL + "cliente";
+        api.get(urlFetch).then((res) => {
+            var data = res.data.map(function (obj) {
+                obj.text = obj.text || obj.nit + " - " + obj.razonsocial;
+                return obj;
+            });
+            setCliente(data);
         });
     };
 
     const saveData = (data) => {
         setLoading(true);
         let endpoint = url;
-        let newData = data;
+
+        const newData = {
+            ...data,
+            cliente: { id: data.cliente }
+        };
+
         delete newData.id;
+
         let options = {
             body: newData,
             headers: { "content-type": "application/json" }
@@ -70,9 +100,9 @@ const ClientesProvider = ({ children }) => {
         api.post(endpoint, options).then((res) => {
             if (!res.err) {
                 dispatch({ type: TYPES.CREATE_DATA, payload: res.data });
-                navigate('/admin/clientes/');
+                navigate('/admin/procesos/');
                 setType("success");
-                setMessage("El cliente fue registrado con éxito");
+                setMessage("El proceso fue registrado con éxito");
                 setStatus(1);
             } else {
 
@@ -84,8 +114,14 @@ const ClientesProvider = ({ children }) => {
     const updateData = (data) => {
         setLoading(true);
         let endpoint = url + "/" + data.id;
-        let newData = data;
+
+        const newData = {
+            ...data,
+            cliente: { id: data.cliente }
+        };
+
         delete newData.id;
+
         let options = {
             body: newData,
             headers: { "content-type": "application/json" }
@@ -94,9 +130,9 @@ const ClientesProvider = ({ children }) => {
             if (!res.err) {
                 setDetail(res.data);
                 dispatch({ type: TYPES.UPDATE_DATA, payload: res.data });
-                navigate('/admin/clientes');
+                navigate('/admin/procesos');
                 setType("success");
-                setMessage("El cliente fue actualizado con éxito");
+                setMessage("El proceso fue actualizado con éxito");
                 setStatus(1);
             } else {
 
@@ -116,7 +152,7 @@ const ClientesProvider = ({ children }) => {
             if (!res.err) {
                 dispatch({ type: TYPES.DELETE_DATA, payload: id });
                 setType("success");
-                setMessage("El cliente fue eliminado con éxito");
+                setMessage("El proceso fue eliminado con éxito");
                 setStatus(1);
             } else {
                 setType("danger");
@@ -129,11 +165,11 @@ const ClientesProvider = ({ children }) => {
 
     const data = {
         db, detail, setToDetail, setToUpdate, updateData, saveData, deleteData, module,
-        setModule, setDetail
+        setModule, setDetail, cliente, setCliente, tipoTransporte, setTipoTransporte,
     };
 
-    return <ClientesContext.Provider value={data}>{children}</ClientesContext.Provider>;
+    return <ProcesosContext.Provider value={data}>{children}</ProcesosContext.Provider>;
 }
 
-export { ClientesProvider };
-export default ClientesContext;
+export { ProcesosProvider };
+export default ProcesosContext;

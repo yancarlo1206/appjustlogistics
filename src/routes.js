@@ -22,6 +22,7 @@ import Edificios from "views/pages/edificios/Index";
 import Apartamentos from "views/pages/apartamentos/Index";
 import Espacios from "views/pages/espacios/Index";
 import Clientes from "views/pages/clientes/Index";
+import Procesos from "views/pages/procesos/Index";
 
 var routes = [
   /*{
@@ -32,6 +33,20 @@ var routes = [
     layout: "/admin",
   },*/
   {
+    path: "/clientes",
+    name: "Clientes",
+    icon: "fa fa-users text-primary",
+    component: <Clientes />,
+    layout: "/admin",
+  },
+  {
+    path: "/procesos",
+    name: "Procesos",
+    icon: "ni ni-credit-card text-primary",
+    component: <Procesos />,
+    layout: "/admin",
+  },
+  /*{
     path: "/cotizacion",
     name: "Cotizaciones",
     icon: "ni ni-credit-card text-success",
@@ -58,14 +73,7 @@ var routes = [
     icon: "fa fa-ruler text-warning",
     component: <Espacios />,
     layout: "/admin",
-  },
-  {
-    path: "/clientes",
-    name: "Clientes",
-    icon: "fa fa-users text-info",
-    component: <Clientes />,
-    layout: "/admin",
-  },
+  },*/
   {
     path: "/login",
     name: "Login",

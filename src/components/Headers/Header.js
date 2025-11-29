@@ -52,144 +52,23 @@ const Header = () => {
   const totalEdificios = edificiosDb?.length || 0;
 
   useEffect(() => {
-    if(status){
-        Notification.viewNotification(type, message, notificationAlertRef);
-        setStatus(0);
+    if (status) {
+      Notification.viewNotification(type, message, notificationAlertRef);
+      setStatus(0);
     }
-  },[status, type, message, setStatus]);
+  }, [status, type, message, setStatus]);
 
   return (
     <>
       <div className="rna-wrapper">
         <NotificationAlert ref={notificationAlertRef} />
       </div>
-      {loading ? <Loading />:""}
-      <div className="header bg-gradient-purple pb-8 pt-5 pt-md-8">
+      {loading ? <Loading /> : ""}
+      <div className="header bg-gradient-default pb-8 pt-5 pt-md-8">
         <Container fluid>
           <div className="header-body">
             {/* Card stats */}
-            <Row>
-              <Col lg="6" xl="3">
-                <Card className="card-stats mb-4 mb-xl-0">
-                  <CardBody>
-                    <Row>
-                      <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          # Cotizaciones
-                        </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">
-                          {totalCotizaciones}
-                        </span>
-                      </div>
-                      <Col className="col-auto">
-                        <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
-                          <i className="fa fa-file-invoice" style={{ color: "white" }} />
-                        </div>
-                      </Col>
-                    </Row>
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col lg="6" xl="3">
-                <Card className="card-stats mb-4 mb-xl-0">
-                  <CardBody>
-                    <Row>
-                      <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          # Clientes
-                        </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">
-                          {totalClientes}
-                        </span>
-                      </div>
-                      <Col className="col-auto">
-                        <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
-                          <i className="fa fa-users" style={{ color: "white" }} />
-                        </div>
-                      </Col>
-                    </Row>
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col lg="6" xl="3">
-                <Card className="card-stats mb-4 mb-xl-0">
-                  <CardBody>
-                    <Row>
-                      <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          # Apartamentos
-                        </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">{totalApartamentos}</span>
-                      </div>
-                      <Col className="col-auto">
-                        <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
-                          <i className="ni ni-building" style={{ color: "white" }} />
-                        </div>
-                      </Col>
-                    </Row>
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col lg="6" xl="3">
-                <Card className="card-stats mb-4 mb-xl-0">
-                  <CardBody>
-                    <Row>
-                      <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          # Edificios
-                        </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">{totalEdificios}</span>
-                      </div>
-                      <Col className="col-auto">
-                        <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                          <i className="fa fa-city text-white" />
-                        </div>
-                      </Col>
-                    </Row>
-                  </CardBody>
-                </Card>
-              </Col>
-              {/*<Col lg="6" xl="3">
-                <Card className="card-stats mb-4 mb-xl-0">
-                  <CardBody>
-                    <Row>
-                      <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          Articulos
-                        </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">49,65%</span>
-                      </div>
-                      <Col className="col-auto">
-                        <div className="icon icon-shape bg-info text-white rounded-circle shadow">
-                          <i className="fas fa-percent" />
-                        </div>
-                      </Col>
-                    </Row>
-                    <p className="mt-3 mb-0 text-muted text-sm">
-                      <span className="text-success mr-2">
-                        <i className="fas fa-arrow-up" /> 12%
-                      </span>{" "}
-                      <span className="text-nowrap">Desde la fecha</span>
-                    </p>
-                  </CardBody>
-                </Card>
-              </Col>*/}
-            </Row>
+
           </div>
         </Container>
       </div>

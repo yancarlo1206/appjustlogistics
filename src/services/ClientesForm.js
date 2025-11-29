@@ -2,21 +2,36 @@ export const validationsForm = (form) => {
     let errores = {};
     let regexText40 = /^.{1,40}$/;
 
-    if (!form.nombre) {
-        errores.nombre = "Please the field is required.";
-    } else if (!regexText40.test(form.nombre.trim())) {
-        errores.nombre = "The field accepts up to 40 characters.";
-    } else{
-        errores.nombre = "";
+    if (!form.nit) {
+        errores.nit = "Please the field is required.";
+    } else if (!regexText40.test(form.nit.trim())) {
+        errores.nit = "The field accepts up to 40 characters.";
+    } else {
+        errores.nit = "";
     }
 
-    let regexCelular = /^\d{7,12}$/;
-    if (!form.celular) {
-        errores.celular = "Please the field is required.";
-    } else if (!regexCelular.test(form.celular.trim())) {
-        errores.celular = "Only numbers allowed, min 7 and max 12 digits.";
-    } else{
-        errores.celular = "";
+    if (!form.razonsocial) {
+        errores.razonsocial = "Please the field is required.";
+    } else if (!regexText40.test(form.razonsocial.trim())) {
+        errores.razonsocial = "The field accepts up to 40 characters.";
+    } else {
+        errores.razonsocial = "";
+    }
+
+    if (!form.nombrecontacto) {
+        errores.nombrecontacto = "Please the field is required.";
+    } else if (!regexText40.test(form.nombrecontacto.trim())) {
+        errores.nombrecontacto = "The field accepts up to 40 characters.";
+    } else {
+        errores.nombrecontacto = "";
+    }
+
+    if (!form.apellidocontacto) {
+        errores.apellidocontacto = "Please the field is required.";
+    } else if (!regexText40.test(form.apellidocontacto.trim())) {
+        errores.apellidocontacto = "The field accepts up to 40 characters.";
+    } else {
+        errores.apellidocontacto = "";
     }
 
     let regexCorreo = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/;
@@ -24,14 +39,17 @@ export const validationsForm = (form) => {
         errores.correo = "Please the field is required.";
     } else if (!regexCorreo.test(form.correo.trim())) {
         errores.correo = "The field must be a valid email address.";
-    } else{
+    } else {
         errores.correo = "";
     }
 
-    if (!form.estado) {
-        errores.estado = "Please select a state.";
+    let regexTelefono = /^\d{7,12}$/;
+    if (!form.telefono) {
+        errores.telefono = "Please the field is required.";
+    } else if (!regexTelefono.test(form.telefono.trim())) {
+        errores.telefono = "Only numbers allowed, min 7 and max 12 digits.";
     } else {
-        errores.estado = "";
+        errores.telefono = "";
     }
 
     return errores;
@@ -39,6 +57,6 @@ export const validationsForm = (form) => {
 
 const ClientesForm = {
     validationsForm,
-  };
-  
-  export default ClientesForm;
+};
+
+export default ClientesForm;
