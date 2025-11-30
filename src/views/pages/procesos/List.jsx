@@ -33,13 +33,19 @@ function List({ tab }) {
         { name: "Tipo Transporte", selector: row => row.tipotransporte, sortable: true },
         { name: "Estado", selector: row => row.estado, sortable: true },
         {
-            name: "Acciones", width: "200px", cell: row => (
+            name: "Acciones", width: "300px", cell: row => (
                 <>
                     <Link className='btn btn-primary btn-sm'
                         color="primary"
                         to={"/admin/procesos/detail/" + row.id}
                     >
                         Detallar
+                    </Link>
+                    <Link className='btn btn-warning btn-sm'
+                        color="warning"
+                        to={"/admin/procesos/timeline/" + row.id}
+                    >
+                        Linea Tiempo
                     </Link>
                     <Button
                         className='btn btn-danger btn-sm'
