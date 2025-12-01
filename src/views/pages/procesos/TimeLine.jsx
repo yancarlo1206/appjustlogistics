@@ -10,11 +10,25 @@ import {
 } from "reactstrap";
 
 import Header from "components/Headers/Header";
-const timeline = () => {
+import { Link, useParams } from "react-router-dom";
+import { Alert } from "reactstrap";
+const TimeLine = () => {
+    const { id } = useParams();
+    console.log(id);
   return (
      <>
        <Header />
+      
       <Container className="mt--7" fluid>
+         <Alert  color='primary'>
+          <strong>Cliente:</strong> Nombre Cliente
+            <br />
+            <strong>Nombre Contenedor:</strong> Nombre Contenedor
+            <br />
+            <strong>Tipo Transporte:</strong> Tipo Transporte
+            <br />
+            <strong>Estado:</strong> Estado
+        </Alert>
         <Row>
           <Col lg="12">
             <Card>
@@ -176,4 +190,4 @@ const timeline = () => {
   )
 }
 
-export default timeline
+export default TimeLine
