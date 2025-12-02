@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
   Badge,
   Card,
@@ -18,15 +18,16 @@ import ProcesosContext from "context/ProcesosContext";
 const TimeLine = () => {
 
   const {
-    setToDetail, setToUpdate, detail
+    setToDetail, setProceso, detail,timeLine
   } = useContext(ProcesosContext);
 
   const { id } = useParams();
 
+
   useEffect(() => {
     if (id) {
       setToDetail(id);
-      setToUpdate(id);
+      setProceso(id);
     }
   }, []);
 
@@ -35,166 +36,99 @@ const TimeLine = () => {
       <Header />
 
       <Container className="mt--7" fluid>
-        <Alert color='primary'>
-          <strong>Cliente:</strong> {detail.cliente?.nombrecontacto}
-          <br />
-          <strong>Nombre Contenedor:</strong> {detail.nombrecontenedor}
-          <br />
-          <strong>Tipo Transporte:</strong> {detail.tipotransporte}
-          <br />
-          <strong>Estado:</strong> {detail.estado}
-        </Alert>
+        {/* Additional Info Section */}
+        <Row className="mt-5 mb-2">
+          <Col lg="12">
+            <Card>
+              <CardHeader className="bg-transparent">
+                
+                <div class="align-items-center row">
+                    <div class="col-8">
+                        <h3 class="mb-0">Proceso</h3>
+                        </div>
+                        <div class="text-right col-4">
+                             <Link
+                                className="btn btn-sm btn-danger"
+                                color="default"
+                                to={"/admin/procesos"}
+                            >
+                                Cancelar
+                            </Link>
+                            </div>
+                        </div>
+              </CardHeader>
+              <CardBody>
+                <Row>
+                  <Col md="3">
+                    <div className="mb-4">
+                      <p className="text-uppercase text-muted small">Nombre</p>
+                      <span className="h4">{detail?.nombrecontenedor || "N/A"}</span>
+                    </div>
+                  </Col>
+                  <Col md="3">
+                    <div className="mb-4">
+                      <p className="text-uppercase text-muted small">Cliente</p>
+                      <span className="h4">{detail?.cliente?.nombrecontacto || "N/A"}</span>
+                    </div>
+                  </Col>
+                   <Col md="3">
+                   <div className="mb-4">
+                      <p className="text-uppercase text-muted small">Transporte</p>
+                      <span className="h4">{detail?.tipotransporte?.descripcion || "N/A"}</span>
+                    </div>
+                  </Col>
+                   <Col md="3">
+                    <div className="mb-4">
+                      <p className="text-uppercase text-muted small">Estado</p>
+                      <span className="h4">{detail?.estado?.descripcion || "N/A"}</span>
+                    </div>
+                  </Col>
+                </Row>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
         <Row>
           <Col lg="12">
             <Card>
               <CardHeader className="bg-transparent">
                 <h3 className="mb-0">Linea de Tiempo</h3>
-                <p className="text-sm mb-0">
-                  Estado del proceso
-                </p>
               </CardHeader>
               <CardBody>
-                <div
-                  className="timeline timeline-one-side"
-                  data-timeline-axis-style="dashed"
-                  data-timeline-content="axis"
-                >
-                  <div className="timeline-block">
-                    <span className="timeline-step badge-success">
-                      <i className="ni ni-bell-55" />
-                    </span>
-                    <div className="timeline-content">
-                      <small className="text-muted font-weight-bold">
-                        10:30 AM
-                      </small>
-                      <h5 className="mt-3 mb-0">New message</h5>
-                      <p className="text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
-                      </p>
-                      <div className="mt-3">
-                        <Badge color="success" pill>
-                          design
-                        </Badge>
-                        <Badge color="success" pill>
-                          system
-                        </Badge>
-                        <Badge color="success" pill>
-                          creative
-                        </Badge>
+                {timeLine && timeLine.length > 0 ? (
+                  <div
+                    className="timeline timeline-one-side"
+                    data-timeline-axis-style="dashed"
+                    data-timeline-content="axis"
+                  >
+                    {timeLine.map((event, index) => (
+                      <div key={event.id} className="timeline-block">
+                        <span className={`timeline-step ${event.color}`}>
+                          <i className="ni ni-check-bold" />
+                        </span>
+                        <div className="timeline-content" style={{ maxWidth: "none" }}>
+                          <small className="text-muted font-weight-bold">
+                            {event.fecha}
+                          </small>
+                          <h5 className="mt-3 mb-0">{event.descripcion}</h5>
+                          <p className="text-sm mt-1 mb-0">
+                            Estado actual del proceso: {event.estado}
+                          </p>
+                          <div className="mt-3">
+                            <Badge color={event.color.replace("badge-", "")} pill>
+                              {event.estado}
+                            </Badge>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                  <div className="timeline-block">
-                    <span className="timeline-step badge-danger">
-                      <i className="ni ni-html5" />
-                    </span>
-                    <div className="timeline-content">
-                      <small className="text-muted font-weight-bold">
-                        10:30 AM
-                      </small>
-                      <h5 className="mt-3 mb-0">Product issue</h5>
-                      <p className="text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
-                      </p>
-                      <div className="mt-3">
-                        <Badge color="danger" pill>
-                          design
-                        </Badge>
-                        <Badge color="danger" pill>
-                          system
-                        </Badge>
-                        <Badge color="danger" pill>
-                          creative
-                        </Badge>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="timeline-block">
-                    <span className="timeline-step badge-info">
-                      <i className="ni ni-like-2" />
-                    </span>
-                    <div className="timeline-content">
-                      <small className="text-muted font-weight-bold">
-                        10:30 AM
-                      </small>
-                      <h5 className="mt-3 mb-0">New likes</h5>
-                      <p className="text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
-                      </p>
-                      <div className="mt-3">
-                        <Badge color="info" pill>
-                          design
-                        </Badge>
-                        <Badge color="info" pill>
-                          system
-                        </Badge>
-                        <Badge color="info" pill>
-                          creative
-                        </Badge>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="timeline-block">
-                    <span className="timeline-step badge-success">
-                      <i className="ni ni-bell-55" />
-                    </span>
-                    <div className="timeline-content">
-                      <small className="text-muted font-weight-bold">
-                        10:30 AM
-                      </small>
-                      <h5 className="mt-3 mb-0">New message</h5>
-                      <p className="text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
-                      </p>
-                      <div className="mt-3">
-                        <Badge color="success" pill>
-                          design
-                        </Badge>
-                        <Badge color="success" pill>
-                          system
-                        </Badge>
-                        <Badge color="success" pill>
-                          creative
-                        </Badge>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="timeline-block">
-                    <span className="timeline-step badge-danger">
-                      <i className="ni ni-html5" />
-                    </span>
-                    <div className="timeline-content">
-                      <small className="text-muted font-weight-bold">
-                        10:30 AM
-                      </small>
-                      <h5 className="mt-3 mb-0">Product issue</h5>
-                      <p className="text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
-                      </p>
-                      <div className="mt-3">
-                        <Badge color="danger" pill>
-                          design
-                        </Badge>
-                        <Badge color="danger" pill>
-                          system
-                        </Badge>
-                        <Badge color="danger" pill>
-                          creative
-                        </Badge>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ) : (
+                  <Alert color="warning">
+                    <i className="ni ni-bell-55 mr-2" />
+                    No hay eventos en la línea de tiempo. Los eventos aparecerán aquí cuando estén disponibles.
+                  </Alert>
+                )}
               </CardBody>
             </Card>
           </Col>

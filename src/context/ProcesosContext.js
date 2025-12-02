@@ -15,6 +15,9 @@ const ProcesosProvider = ({ children }) => {
     const [detail, setDetail] = useState({});
     const [module, setModule] = useState();
 
+    const [proceso, setProceso] = useState();
+    const [timeLine, setTimeLine] = useState([]);
+
     const [cliente, setCliente] = useState([]);
     const [tipoTransporte, setTipoTransporte] = useState([]);
     const [estadoProceso, setEstadoProceso] = useState([]);
@@ -40,6 +43,13 @@ const ProcesosProvider = ({ children }) => {
             fetchDataDetail();
         }
     }, [toUpdate]);
+
+    useEffect(() => {
+        if (proceso && proceso != 0) {
+            getObjectProcess();
+            getTimeLineProcess();
+        }
+    }, [proceso]);
 
     useEffect(() => {
         if (module) {
@@ -74,6 +84,72 @@ const ProcesosProvider = ({ children }) => {
             setDetail(detail);
             setLoading(false);
         });
+    };
+    const getObjectProcess = () => {
+        setLoading(true);
+        url = url + "/" + proceso;
+        api.get(url).then((res) => {
+         const data = res.data;
+            setDetail(data);
+            setLoading(false);
+        });
+    };
+     const getTimeLineProcess = () => {
+        setLoading(true);
+        /*url = url + "/" + proceso;
+        api.get(url).then((res) => {
+         const data = res.data;
+            setDetail(data);
+            setLoading(false);
+        });*/
+        setTimeLine(
+            [
+    {
+      id: 1,
+      descripcion: "Proceso Creado",
+      fecha: "2024-12-01",
+      estado: "Creado",
+      color: "badge-success"
+    },
+    {
+      id: 2,
+      descripcion: "Documentos Recibidos",
+      fecha: "2024-12-02",
+      estado: "Procesado",
+      color: "badge-info"
+    },
+    {
+      id: 3,
+      descripcion: "En Revisión",
+      fecha: "2024-12-03",
+      estado: "Revisando",
+      color: "badge-warning"
+    },
+    {
+      id: 4,
+      descripcion: "Aprobado",
+      fecha: "2024-12-04",
+      estado: "Aprobado",
+      color: "badge-success"
+    },
+    {
+      id: 5,
+      descripcion: "Enviado",
+      fecha: "2024-12-05",
+      estado: "En Tránsito",
+      color: "badge-primary"
+    },
+    {
+      id: 6,
+      descripcion: "Entregado",
+      fecha: "2024-12-06 15:30",
+      estado: "Completado",
+      color: "badge-success"
+    }
+  ]
+        );
+         setLoading(false);
+
     };
 
     const fetchDataCliente = () => {
@@ -197,7 +273,7 @@ const ProcesosProvider = ({ children }) => {
     const data = {
         db, detail, setToDetail, setToUpdate, updateData, saveData, deleteData, module,
         setModule, setDetail, cliente, setCliente, tipoTransporte, setTipoTransporte,
-        estadoProceso, setEstadoProceso
+        estadoProceso, setEstadoProceso, proceso, setProceso, timeLine, setTimeLine
     };
 
     return <ProcesosContext.Provider value={data}>{children}</ProcesosContext.Provider>;

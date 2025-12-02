@@ -111,12 +111,23 @@ function List({ tab }) {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="">
-                                <div className="align-items-center row">
-                                    <div className="col-11">
-                                        <h3 className="mb-0">Procesos</h3>
-                                        <p className="text-sm mb-0">
-                                            Listado de procesos registrados en el sistema
-                                        </p>
+                                
+                                <div class="align-items-center row">
+                                    <div class="col-8">
+                                            <h3 class="mb-0">Proceso</h3>
+                                            <p className="text-sm mb-0">
+                                                Listado de procesos registrados en el sistema
+                                            </p>
+                                    </div>
+                                    <div class="text-right col-4">
+                                                <Link
+                                                className="btn btn-md btn-primary"
+                                                color="primary"
+                                                to={"add"}
+                                            >
+                                                <i className="fas fa-plus mr-2" aria-hidden="true" />
+                                                Agregar
+                                            </Link>
                                     </div>
                                 </div>
                             </CardHeader>
@@ -137,15 +148,7 @@ function List({ tab }) {
                                     pagination
                                     highlightOnHover
                                 />
-                                <div className="m-3">
-                                    <Link
-                                        className='btn btn-primary'
-                                        color="primary"
-                                        to={"add"}
-                                    >
-                                        Agregar Proceso
-                                    </Link>
-                                </div>
+                               
                             </CardBody>
                         </Card>
                     </div>
