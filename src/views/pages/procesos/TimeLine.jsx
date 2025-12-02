@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
   Badge,
   Card,
@@ -12,30 +12,45 @@ import {
 import Header from "components/Headers/Header";
 import { Link, useParams } from "react-router-dom";
 import { Alert } from "reactstrap";
+
+import ProcesosContext from "context/ProcesosContext";
+
 const TimeLine = () => {
-    const { id } = useParams();
-    console.log(id);
+
+  const {
+    setToDetail, setToUpdate, detail
+  } = useContext(ProcesosContext);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      setToDetail(id);
+      setToUpdate(id);
+    }
+  }, []);
+
   return (
-     <>
-       <Header />
-      
+    <>
+      <Header />
+
       <Container className="mt--7" fluid>
-         <Alert  color='primary'>
-          <strong>Cliente:</strong> Nombre Cliente
-            <br />
-            <strong>Nombre Contenedor:</strong> Nombre Contenedor
-            <br />
-            <strong>Tipo Transporte:</strong> Tipo Transporte
-            <br />
-            <strong>Estado:</strong> Estado
+        <Alert color='primary'>
+          <strong>Cliente:</strong> {detail.cliente?.nombrecontacto}
+          <br />
+          <strong>Nombre Contenedor:</strong> {detail.nombrecontenedor}
+          <br />
+          <strong>Tipo Transporte:</strong> {detail.tipotransporte}
+          <br />
+          <strong>Estado:</strong> {detail.estado}
         </Alert>
         <Row>
           <Col lg="12">
             <Card>
               <CardHeader className="bg-transparent">
                 <h3 className="mb-0">Linea de Tiempo</h3>
-                 <p className="text-sm mb-0">
-                    Estado del proceso
+                <p className="text-sm mb-0">
+                  Estado del proceso
                 </p>
               </CardHeader>
               <CardBody>
@@ -183,7 +198,7 @@ const TimeLine = () => {
               </CardBody>
             </Card>
           </Col>
-         
+
         </Row>
       </Container>
     </>
