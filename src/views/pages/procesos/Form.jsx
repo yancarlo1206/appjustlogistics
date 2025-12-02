@@ -20,7 +20,7 @@ const Formulario = () => {
 
     const {
         detail: data, updateData, saveData, setModule, module, setToDetail, setDetail,
-        setToUpdate, cliente, tipoTransporte
+        setToUpdate, cliente, tipoTransporte, estadoProceso
     } = useContext(ProcesosContext);
 
     const {
@@ -128,7 +128,7 @@ const Formulario = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-nombrecontenedor"
                                                     >
-                                                        Nombre Contenedor <span className="text-danger">*</span>
+                                                        Nombre <span className="text-danger">*</span>
                                                     </label>
                                                     <Input
                                                         className="form-control"
@@ -239,15 +239,21 @@ const Formulario = () => {
                                                     <Input
                                                         className="form-control"
                                                         id="input-estado"
-                                                        placeholder=""
-                                                        type="text"
+                                                        type="select"
                                                         name="estado"
                                                         required="required"
-                                                        invalid={errors.estado !== ""}
+                                                        value={form.estado}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
-                                                        defaultValue={data.estado}
-                                                    />
+                                                        invalid={errors.estado !== ""}
+                                                    >
+                                                        <option value="" hidden></option>
+                                                        {estadoProceso.map(item => (
+                                                            <option key={item.id} value={item.id}>
+                                                                {item.text}
+                                                            </option>
+                                                        ))};
+                                                    </Input>
                                                     <div className="invalid-feedback">
                                                         {errors.estado}
                                                     </div>

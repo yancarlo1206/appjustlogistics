@@ -16,7 +16,8 @@ const ProcesosProvider = ({ children }) => {
     const [module, setModule] = useState();
 
     const [cliente, setCliente] = useState([]);
-    const [tipoTransporte, setTipoTransporte] = useState([{ id: "AEREO", text: 'Aéreo' }, { id: "MARITIMO", text: 'Marítimo' }, { id: "TERRESTRE", text: 'Terrestre' }]);
+    const [tipoTransporte, setTipoTransporte] = useState([]);
+    const [estadoProceso, setEstadoProceso] = useState([]);
 
     const navigate = useNavigate();
     const { REACT_APP_API_URL } = process.env;
@@ -43,6 +44,8 @@ const ProcesosProvider = ({ children }) => {
     useEffect(() => {
         if (module) {
             fetchDataCliente();
+            fetchDataTipoTransporte();
+            fetchDataEstadoProceso();
         }
     }, [module]);
 
@@ -65,6 +68,8 @@ const ProcesosProvider = ({ children }) => {
             const detail = {
                 ...res.data,
                 cliente: res.data?.cliente?.id ?? null,
+                tipotransporte: res.data?.tipotransporte?.id ?? null,
+                estado: res.data?.estado?.id ?? null,
             };
             setDetail(detail);
             setLoading(false);
@@ -82,13 +87,37 @@ const ProcesosProvider = ({ children }) => {
         });
     };
 
+    const fetchDataTipoTransporte = () => {
+        let urlFetch = REACT_APP_API_URL + "tipoTransporte";
+        api.get(urlFetch).then((res) => {
+            var data = res.data.map(function (obj) {
+                obj.text = obj.text || obj.id + " - " + obj.descripcion;
+                return obj;
+            });
+            setTipoTransporte(data);
+        });
+    };
+
+    const fetchDataEstadoProceso = () => {
+        let urlFetch = REACT_APP_API_URL + "estado";
+        api.get(urlFetch).then((res) => {
+            var data = res.data.map(function (obj) {
+                obj.text = obj.text || obj.id + " - " + obj.descripcion;
+                return obj;
+            });
+            setEstadoProceso(data);
+        });
+    };
+
     const saveData = (data) => {
         setLoading(true);
         let endpoint = url;
 
         const newData = {
             ...data,
-            cliente: { id: data.cliente }
+            cliente: { id: data.cliente },
+            tipotransporte: { id: data.tipotransporte },
+            estado: { id: data.estado },
         };
 
         delete newData.id;
@@ -117,7 +146,9 @@ const ProcesosProvider = ({ children }) => {
 
         const newData = {
             ...data,
-            cliente: { id: data.cliente }
+            cliente: { id: data.cliente },
+            tipotransporte: { id: data.tipotransporte },
+            estado: { id: data.estado },
         };
 
         delete newData.id;
@@ -166,6 +197,7 @@ const ProcesosProvider = ({ children }) => {
     const data = {
         db, detail, setToDetail, setToUpdate, updateData, saveData, deleteData, module,
         setModule, setDetail, cliente, setCliente, tipoTransporte, setTipoTransporte,
+        estadoProceso, setEstadoProceso
     };
 
     return <ProcesosContext.Provider value={data}>{children}</ProcesosContext.Provider>;

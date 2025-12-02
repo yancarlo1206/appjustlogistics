@@ -18,10 +18,7 @@
 
 // reactstrap components
 import { useRef, useContext, useEffect } from "react";
-import ClientesContext from "context/ClientesContext";
-import CotizacionContext from "context/CotizacionContext";
-import ApartamentosContext from "context/ApartamentosContext";
-import EdificiosContext from "context/EdificiosContext";
+
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 import NotificationAlert from "react-notification-alert";
@@ -38,18 +35,6 @@ const Header = () => {
   const notificationAlertRef = useRef(null);
   const { status, type, message, setStatus } = useContext(NotificationContext);
   const { loading } = useContext(LoadingContext);
-
-
-  // Contextos para datos reales con fallback si el contexto es undefined
-  const { db: clientesDb = [] } = useContext(ClientesContext) || {};
-  const { db: cotizacionesDb = [] } = useContext(CotizacionContext) || {};
-  const { db: apartamentosDb = [] } = useContext(ApartamentosContext) || {};
-  const { db: edificiosDb = [] } = useContext(EdificiosContext) || {};
-
-  const totalClientes = clientesDb?.length || 0;
-  const totalCotizaciones = cotizacionesDb?.length || 0;
-  const totalApartamentos = apartamentosDb?.length || 0;
-  const totalEdificios = edificiosDb?.length || 0;
 
   useEffect(() => {
     if (status) {

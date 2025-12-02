@@ -17,10 +17,6 @@
 */
 import Index from "views/Index.js";
 import Login from "views/pages/login/Login.jsx";
-import Cotizacion from "views/pages/cotizacion/Index";
-import Edificios from "views/pages/edificios/Index";
-import Apartamentos from "views/pages/apartamentos/Index";
-import Espacios from "views/pages/espacios/Index";
 import Clientes from "views/pages/clientes/Index";
 import Procesos from "views/pages/procesos/Index";
 

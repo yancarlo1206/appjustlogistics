@@ -30,8 +30,8 @@ function List({ tab }) {
         { name: "ID", selector: row => row.id, sortable: true, width: "100px" },
         { name: "Cliente", selector: row => row.cliente.nit + " - " + row.cliente.razonsocial, sortable: true },
         { name: "Nombre Contenedor", selector: row => row.nombrecontenedor, sortable: true },
-        { name: "Tipo Transporte", selector: row => row.tipotransporte, sortable: true },
-        { name: "Estado", selector: row => row.estado, sortable: true },
+        { name: "Tipo Transporte", selector: row => row.tipotransporte.descripcion, sortable: true },
+        { name: "Estado", selector: row => row.estado.descripcion, sortable: true },
         {
             name: "Acciones", width: "300px", cell: row => (
                 <>

@@ -10,18 +10,16 @@ export const validationsForm = (form) => {
         errores.nombrecontenedor = "";
     }
 
-    if (!form.tipotransporte) {
-        errores.tipotransporte = "Please the field is required.";
-    } else if (!regexText40.test(form.tipotransporte.trim())) {
-        errores.tipotransporte = "The field accepts up to 40 characters.";
-    } else {
-        errores.tipotransporte = "";
-    }
-
     if (!form.cliente) {
         errores.cliente = "Please the field is required.";
     } else {
         errores.cliente = "";
+    }
+
+    if (!form.tipotransporte) {
+        errores.tipotransporte = "Please the field is required.";
+    } else {
+        errores.tipotransporte = "";
     }
 
     if (!form.estado) {
