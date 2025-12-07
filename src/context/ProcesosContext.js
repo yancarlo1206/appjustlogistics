@@ -33,6 +33,7 @@ const ProcesosProvider = ({ children }) => {
 
     let api = helpHttp();
     let url = REACT_APP_API_URL + "proceso";
+    let urlline = REACT_APP_API_URL + "lineaTiempo";
 
     useEffect(() => {
         fetchData();
@@ -48,6 +49,7 @@ const ProcesosProvider = ({ children }) => {
         if (proceso && proceso != 0) {
             getObjectProcess();
             getTimeLineProcess();
+            fetchDataEstadoProceso();
         }
     }, [proceso]);
 
@@ -88,6 +90,7 @@ const ProcesosProvider = ({ children }) => {
     const getObjectProcess = () => {
         setLoading(true);
         url = url + "/" + proceso;
+        console.log("URL", url);
         api.get(url).then((res) => {
          const data = res.data;
             setDetail(data);
@@ -96,59 +99,12 @@ const ProcesosProvider = ({ children }) => {
     };
      const getTimeLineProcess = () => {
         setLoading(true);
-        /*url = url + "/" + proceso;
-        api.get(url).then((res) => {
+        urlline = urlline + "/listPorProceso/"+proceso;
+        api.get(urlline).then((res) => {
          const data = res.data;
-            setDetail(data);
+            setTimeLine(data);
             setLoading(false);
-        });*/
-        setTimeLine(
-            [
-    {
-      id: 1,
-      descripcion: "Proceso Creado",
-      fecha: "2024-12-01",
-      estado: "Creado",
-      color: "badge-success"
-    },
-    {
-      id: 2,
-      descripcion: "Documentos Recibidos",
-      fecha: "2024-12-02",
-      estado: "Procesado",
-      color: "badge-info"
-    },
-    {
-      id: 3,
-      descripcion: "En Revisión",
-      fecha: "2024-12-03",
-      estado: "Revisando",
-      color: "badge-warning"
-    },
-    {
-      id: 4,
-      descripcion: "Aprobado",
-      fecha: "2024-12-04",
-      estado: "Aprobado",
-      color: "badge-success"
-    },
-    {
-      id: 5,
-      descripcion: "Enviado",
-      fecha: "2024-12-05",
-      estado: "En Tránsito",
-      color: "badge-primary"
-    },
-    {
-      id: 6,
-      descripcion: "Entregado",
-      fecha: "2024-12-06 15:30",
-      estado: "Completado",
-      color: "badge-success"
-    }
-  ]
-        );
-         setLoading(false);
+        });
 
     };
 
@@ -184,6 +140,86 @@ const ProcesosProvider = ({ children }) => {
             setEstadoProceso(data);
         });
     };
+
+    const saveTimeLineState = (data) => {
+        setLoading(true);
+        let endpoint = urlline;
+        let options = {
+            body: data,
+            headers: { "content-type": "application/json" }
+        }
+        let proceso = data.proceso.id;
+        api.post(endpoint, options).then((res) => {
+            if (!res.err) {
+                dispatch({ type: TYPES.CREATE_DATA, payload: res.data });
+                setType("success");
+                setMessage("El evento fue registrado con éxito en la línea de tiempo");
+                setStatus(1);
+                setProceso(proceso);
+            } else {
+                setType("danger");
+                setMessage("No se pudo registrar el evento en la línea de tiempo");
+                setStatus(1);
+            }
+            setLoading(false);
+        })
+       
+    };
+    const editTimeLineState = (data) => {
+         setLoading(true);
+        let endpoint = urlline + "/" + data.id;
+
+        const newData = {
+            descripcion: data.descripcion,
+            fechaevento: data.fechaevento,
+            estado: { id: data.estado.id },
+            proceso: { id: data.proceso.id },
+            ubicacion: data.ubicacion
+        };
+
+         let proceso = data.proceso.id;
+
+        let options = {
+            body: newData,
+            headers: { "content-type": "application/json" }
+        }
+        api.put(endpoint, options).then((res) => {
+            if (!res.err) {
+                dispatch({ type: TYPES.UPDATE_DATA, payload: res.data });
+                setType("success");
+                setMessage("El evento fue actualizado con éxito en la línea de tiempo");
+                setStatus(1);
+                setProceso(proceso);
+            } else {
+                setType("danger");
+                setMessage("No se pudo actualizar el evento en la línea de tiempo");
+                setStatus(1);
+            }
+            setLoading(false);
+        })
+    };
+     const deleteTimelineState = (id,proceso) => {
+        setLoading(true);
+        let endpoint = urlline + "/" + id;
+        let options = {
+            body: "",
+            headers: { "content-type": "application/json" }
+        }
+        api.del(endpoint, options).then((res) => {
+            if (!res.err) {
+                dispatch({ type: TYPES.DELETE_DATA, payload: id });
+                setType("success");
+                setMessage("El evento fue eliminado con éxito en la línea de tiempo");
+                setStatus(1);
+                setProceso(proceso);
+            } else {
+                setType("danger");
+                setMessage(res.message.message);
+                setStatus(1);
+            }
+            setLoading(false);
+        });
+    }
 
     const saveData = (data) => {
         setLoading(true);
@@ -273,7 +309,8 @@ const ProcesosProvider = ({ children }) => {
     const data = {
         db, detail, setToDetail, setToUpdate, updateData, saveData, deleteData, module,
         setModule, setDetail, cliente, setCliente, tipoTransporte, setTipoTransporte,
-        estadoProceso, setEstadoProceso, proceso, setProceso, timeLine, setTimeLine
+        estadoProceso, setEstadoProceso, proceso, setProceso, timeLine, setTimeLine,
+        saveTimeLineState,editTimeLineState,deleteTimelineState
     };
 
     return <ProcesosContext.Provider value={data}>{children}</ProcesosContext.Provider>;

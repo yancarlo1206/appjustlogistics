@@ -110,7 +110,7 @@ function List({ tab }) {
                 <Row>
                     <div className="col">
                         <Card className="shadow">
-                            <CardHeader className="">
+                            <CardHeader >
                                 
                                 <div class="align-items-center row">
                                     <div class="col-8">
