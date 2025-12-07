@@ -122,7 +122,7 @@ const Sidebar = (props) => {
           <NavbarBrand className="" {...navbarBrandProps}>
             <img
               alt={logo.imgAlt}
-              className="navbar-brand-img"
+              className="navbar-brand-img bg-gradient-default p-2 rounded"
               style={{ maxHeight: "5.5rem" }}
               src={logo.imgSrc}
             />

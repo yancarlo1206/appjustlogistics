@@ -111,23 +111,23 @@ function List({ tab }) {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader >
-                                
-                                <div class="align-items-center row">
-                                    <div class="col-8">
-                                            <h3 class="mb-0">Proceso</h3>
-                                            <p className="text-sm mb-0">
-                                                Listado de procesos registrados en el sistema
-                                            </p>
+
+                                <div className="align-items-center row">
+                                    <div className="col-8">
+                                        <h3 className="mb-0">Proceso</h3>
+                                        <p className="text-sm mb-0">
+                                            Listado de procesos registrados en el sistema
+                                        </p>
                                     </div>
-                                    <div class="text-right col-4">
-                                                <Link
-                                                className="btn btn-md btn-primary"
-                                                color="primary"
-                                                to={"add"}
-                                            >
-                                                <i className="fas fa-plus mr-2" aria-hidden="true" />
-                                                Agregar
-                                            </Link>
+                                    <div className="text-right col-4">
+                                        <Link
+                                            className="btn btn-md btn-primary"
+                                            color="primary"
+                                            to={"add"}
+                                        >
+                                            <i className="fas fa-plus mr-2" aria-hidden="true" />
+                                            Agregar
+                                        </Link>
                                     </div>
                                 </div>
                             </CardHeader>
@@ -148,7 +148,7 @@ function List({ tab }) {
                                     pagination
                                     highlightOnHover
                                 />
-                               
+
                             </CardBody>
                         </Card>
                     </div>

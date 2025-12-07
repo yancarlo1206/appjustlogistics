@@ -18,7 +18,7 @@ import ProcesosContext from "context/ProcesosContext";
 const Traking = () => {
 
   const {
-    setToDetail, setProceso, detail,timeLine
+    setToDetail, setProceso, detail, timeLine
   } = useContext(ProcesosContext);
 
   const { id } = useParams();
@@ -41,21 +41,21 @@ const Traking = () => {
           <Col lg="12">
             <Card>
               <CardHeader className="bg-transparent">
-                
-                <div class="align-items-center row">
-                    <div class="col-8">
-                        <h3 class="mb-0">Proceso</h3>
-                        </div>
-                        <div class="text-right col-4">
-                             <Link
-                                className="btn btn-sm btn-danger"
-                                color="default"
-                                to={"/admin/procesos"}
-                            >
-                                Cancelar
-                            </Link>
-                            </div>
-                        </div>
+
+                <div className="align-items-center row">
+                  <div className="col-8">
+                    <h3 className="mb-0">Proceso</h3>
+                  </div>
+                  <div className="text-right col-4">
+                    <Link
+                      className="btn btn-sm btn-danger"
+                      color="default"
+                      to={"/admin/procesos"}
+                    >
+                      Cancelar
+                    </Link>
+                  </div>
+                </div>
               </CardHeader>
               <CardBody>
                 <Row>
@@ -71,13 +71,13 @@ const Traking = () => {
                       <span className="h4">{detail?.cliente?.nombrecontacto || "N/A"}</span>
                     </div>
                   </Col>
-                   <Col md="3">
-                   <div className="mb-4">
+                  <Col md="3">
+                    <div className="mb-4">
                       <p className="text-uppercase text-muted small">Transporte</p>
                       <span className="h4">{detail?.tipotransporte?.descripcion || "N/A"}</span>
                     </div>
                   </Col>
-                   <Col md="3">
+                  <Col md="3">
                     <div className="mb-4">
                       <p className="text-uppercase text-muted small">Estado</p>
                       <span className="h4">{detail?.estado?.descripcion || "N/A"}</span>

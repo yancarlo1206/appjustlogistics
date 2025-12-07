@@ -107,11 +107,21 @@ function List({ tab }) {
             <Card className="shadow">
               <CardHeader className="">
                 <div className="align-items-center row">
-                  <div className="col-11">
+                  <div className="col-8">
                     <h3 className="mb-0">Clientes</h3>
                     <p className="text-sm mb-0">
                       Listado de clientes registrados en el sistema
                     </p>
+                  </div>
+                  <div className="text-right col-4">
+                    <Link
+                      className="btn btn-md btn-primary"
+                      color="primary"
+                      to={"add"}
+                    >
+                      <i className="fas fa-plus mr-2" aria-hidden="true" />
+                      Agregar
+                    </Link>
                   </div>
                 </div>
               </CardHeader>
@@ -132,15 +142,7 @@ function List({ tab }) {
                   pagination
                   highlightOnHover
                 />
-                <div className="m-3">
-                  <Link
-                    className='btn btn-primary'
-                    color="primary"
-                    to={"add"}
-                  >
-                    Agregar Cliente
-                  </Link>
-                </div>
+
               </CardBody>
             </Card>
           </div>
