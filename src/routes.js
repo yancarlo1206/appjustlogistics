@@ -19,6 +19,7 @@ import Index from "views/Index.js";
 import Login from "views/pages/login/Login.jsx";
 import Clientes from "views/pages/clientes/Index";
 import Procesos from "views/pages/procesos/Index";
+import Tracking from "views/pages/tracking/Index";
 
 var routes = [
   /*{
@@ -42,34 +43,13 @@ var routes = [
     component: <Procesos />,
     layout: "/admin",
   },
-  /*{
-    path: "/cotizacion",
-    name: "Cotizaciones",
-    icon: "ni ni-credit-card text-success",
-    component: <Cotizacion />,
+  {
+    path: "/tracking",
+    name: "Tracking",
+    icon: "ni ni-delivery-fast text-info",
+    component: <Tracking />,
     layout: "/admin",
   },
-  {
-    path: "/edificios",
-    name: "Edificios",
-    icon: "fa fa-city text-primary",
-    component: <Edificios />,
-    layout: "/admin",
-  },
-  {
-    path: "/apartamentos",
-    name: "Apartamentos",
-    icon: "ni ni-building text-primary",
-    component: <Apartamentos />,
-    layout: "/admin",
-  },
-  {
-    path: "/espacios",
-    name: "Espacios",
-    icon: "fa fa-ruler text-warning",
-    component: <Espacios />,
-    layout: "/admin",
-  },*/
   {
     path: "/login",
     name: "Login",
