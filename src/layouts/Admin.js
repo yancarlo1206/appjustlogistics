@@ -43,7 +43,16 @@ const Admin = (props) => {
     mainContent.current.scrollTop = 0;
   }, [location]);
 
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, getTipoUser } = useAuth();
+
+  const userRole = getTipoUser();
+
+  const allowedRoutes = routes.filter(route => {
+    if (route.roles) {
+      return route.roles.includes(userRole);
+    }
+    return true; // Routes without roles are accessible to everyone (or handle as restricted by default if needed)
+  });
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -79,7 +88,7 @@ const Admin = (props) => {
     <>
       <Sidebar
         {...props}
-        routes={routes}
+        routes={allowedRoutes}
         logo={{
           innerLink: "/admin/index",
           imgSrc: require("../assets/img/brand/appiconD.png"),
@@ -95,8 +104,8 @@ const Admin = (props) => {
                 brandText={getBrandText(location.pathname)}
               />
               <Routes>
-                {isAuthenticated() ? getRoutes(routes) : ""}
-                <Route path="*" element={<Navigate to="/auth/login" replace />} />
+                {isAuthenticated() ? getRoutes(allowedRoutes) : ""}
+                <Route path="*" element={<Navigate to={userRole === 'Externo' ? "/admin/tracking" : "/admin/clientes"} replace />} />
               </Routes>
               <Container fluid>
                 <AdminFooter />

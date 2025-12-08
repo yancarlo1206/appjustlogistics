@@ -35,6 +35,7 @@ var routes = [
     icon: "fa fa-users text-primary",
     component: <Clientes />,
     layout: "/admin",
+    roles: ["Administrador"]
   },
   {
     path: "/procesos",
@@ -42,6 +43,7 @@ var routes = [
     icon: "ni ni-credit-card text-primary",
     component: <Procesos />,
     layout: "/admin",
+    roles: ["Administrador"]
   },
   {
     path: "/tracking",
@@ -49,6 +51,7 @@ var routes = [
     icon: "ni ni-delivery-fast text-info",
     component: <Tracking />,
     layout: "/admin",
+    roles: ["Externo"]
   },
   {
     path: "/login",
