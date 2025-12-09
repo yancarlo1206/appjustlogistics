@@ -90,7 +90,6 @@ const ProcesosProvider = ({ children }) => {
     const getObjectProcess = () => {
         setLoading(true);
         url = url + "/" + proceso;
-        console.log("URL", url);
         api.get(url).then((res) => {
          const data = res.data;
             setDetail(data);
@@ -157,8 +156,8 @@ const ProcesosProvider = ({ children }) => {
                 setStatus(1);
                 setProceso(proceso);
             } else {
-                setType("danger");
-                setMessage("No se pudo registrar el evento en la línea de tiempo");
+                 setType("danger");
+                setMessage(res.message.message);
                 setStatus(1);
             }
             setLoading(false);
@@ -192,7 +191,7 @@ const ProcesosProvider = ({ children }) => {
                 setProceso(proceso);
             } else {
                 setType("danger");
-                setMessage("No se pudo actualizar el evento en la línea de tiempo");
+                setMessage(res.message.message);
                 setStatus(1);
             }
             setLoading(false);
@@ -246,6 +245,9 @@ const ProcesosProvider = ({ children }) => {
                 setMessage("El proceso fue registrado con éxito");
                 setStatus(1);
             } else {
+                setType("danger");
+                setMessage(res.message.message);
+                setStatus(1);
 
             }
             setLoading(false);
@@ -278,6 +280,9 @@ const ProcesosProvider = ({ children }) => {
                 setMessage("El proceso fue actualizado con éxito");
                 setStatus(1);
             } else {
+                 setType("danger");
+                setMessage(res.message.message);
+                setStatus(1);
 
             }
             setLoading(false);

@@ -75,7 +75,9 @@ const ClientesProvider = ({ children }) => {
                 setMessage("El cliente fue registrado con éxito");
                 setStatus(1);
             } else {
-
+                setType("danger");
+                setMessage(res.message.message);
+                setStatus(1);
             }
             setLoading(false);
         })

@@ -54,7 +54,7 @@ export const helpHttp = () => {
                         err: true,
                         status: res.status || "00",
                         statusText: res.statusText || "Ocurrió un Error",
-                        message: errorData.msg // Acceder al mensaje desde el JSON de error.
+                        message: errorData.mensaje // Acceder al mensaje desde el JSON de error.
                     });
                 });
             }

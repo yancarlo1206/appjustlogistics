@@ -24,6 +24,19 @@ import { Link, useParams } from "react-router-dom";
 import ReactBSAlert from "react-bootstrap-sweetalert";
 
 import ProcesosContext from "context/ProcesosContext";
+import img1 from "assets/img/icons/timeline/1.png";
+import img2 from "assets/img/icons/timeline/2.png";
+import img3 from "assets/img/icons/timeline/3.png";
+import img4 from "assets/img/icons/timeline/4.png";
+import img5 from "assets/img/icons/timeline/5.png";
+import img6 from "assets/img/icons/timeline/6.png";
+import img7 from "assets/img/icons/timeline/7.png";
+import img8 from "assets/img/icons/timeline/8.png";
+import img9 from "assets/img/icons/timeline/9.png";
+import img10 from "assets/img/icons/timeline/10.png";
+import img11 from "assets/img/icons/timeline/11.png";
+import img12 from "assets/img/icons/timeline/12.png";
+import img13 from "assets/img/icons/timeline/13.png";
 
 const TimeLine = () => {
   const { setToDetail, 
@@ -126,6 +139,21 @@ const TimeLine = () => {
       </ReactBSAlert>
     );
   };
+    const images = {
+          1: img1,
+          2: img2,
+          3: img3,
+          4: img4,
+          5: img5,
+          6: img6,
+          7: img7,
+          8: img8,
+          9: img9,
+          10: img10,
+          11: img11,
+          12: img12,
+          13: img13
+      };
 
   return (
     <>
@@ -193,25 +221,31 @@ const TimeLine = () => {
                   {events && events.length > 0 ? (
                     events.map((event) => {
                       const fecha = event.fechaevento || "";
-                      const badgeColor = "success"; // forced color
+                      const badgeColor = "default"; // forced color
                       return (
                         <div key={event.id} className="timeline-block">
                           <span className={`timeline-step bg-${badgeColor}`}>
-                            <i className="ni ni-check-bold" />
+                            <Link to={`/admin/tracking/event/${event.id}`}>
+                              <img
+                                  src={images[event.id]}
+                                  alt={event.descripcion || `evento-${event.id}`}
+                                  style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: '50%' }}
+                              />
+                          </Link>
                           </span>
                           <div className="timeline-content" style={{ maxWidth: "none" }}>
                             <div className="d-flex align-items-center">
                               <div className="flex-grow-1">
                                 <small className="text-muted font-weight-bold">{fecha}</small>
-                                <h5 className="mt-3 mb-0">Mensaje</h5>
-                                <p className="text-sm mt-1 mb-0">{event.descripcion}</p>
-                                <div className="mt-3">
-                                  <Badge color={badgeColor} pill>
+                                <h5 className="text-lg mt-3 mb-0">Mensaje</h5>
+                                <p className="text-md mt-1 mb-0">{event.descripcion}</p>
+                                <div className="text-xl mt-3">
+                                  <Badge color="success" pill>
                                     {event.estado.descripcion}
                                   </Badge>
                                 </div>
                               </div>
-                              <div className="ml-3 d-flex align-items-end">
+                              <div className="ml-3 d-flex flex-column flex-md-row align-items-end">
                                 <Button size="sm" color="primary" className="mb-2" onClick={() => handleEdit(event)}>
                                   <i className="fas fa-edit mr-1" aria-hidden="true" />Editar
                                 </Button>
