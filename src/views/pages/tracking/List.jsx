@@ -24,11 +24,11 @@ function List({ tab }) {
     const columns = [
         { name: "ID", selector: row => row.id, sortable: true, width: "100px" },
         { name: "Cliente", selector: row => row.cliente.nit + " - " + row.cliente.razonsocial, sortable: true },
-        { name: "Nombre Contenedor", selector: row => row.nombrecontenedor, sortable: true },
+        { name: "Nombre", selector: row => row.nombrecontenedor, sortable: true },
         { name: "Tipo Transporte", selector: row => row.tipotransporte.descripcion, sortable: true },
         { name: "Estado", selector: row => row.estado.descripcion, sortable: true },
         {
-            name: "Acciones", width: "300px", cell: row => (
+            name: "Acciones", width: "150px", cell: row => (
                 <>
                     <Link className='btn btn-info btn-sm'
                         color="info"

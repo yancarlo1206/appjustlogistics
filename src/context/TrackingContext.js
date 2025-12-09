@@ -32,7 +32,7 @@ const TrackingProvider = ({ children }) => {
     const { db } = state;
 
     let api = helpHttp();
-    let url = REACT_APP_API_URL + "proceso";
+    let url = REACT_APP_API_URL + "proceso/listPorCliente";
     let urlline = REACT_APP_API_URL + "lineaTiempo";
 
     useEffect(() => {
@@ -49,17 +49,11 @@ const TrackingProvider = ({ children }) => {
         if (proceso && proceso != 0) {
             getObjectProcess();
             getTimeLineProcess();
-            fetchDataEstadoProceso();
+            
         }
     }, [proceso]);
 
-    useEffect(() => {
-        if (module) {
-            fetchDataCliente();
-            fetchDataTipoTransporte();
-            fetchDataEstadoProceso();
-        }
-    }, [module]);
+    
 
     const fetchData = () => {
         setLoading(true);
@@ -107,46 +101,11 @@ const TrackingProvider = ({ children }) => {
         });
 
     };
-
-    const fetchDataCliente = () => {
-        let urlFetch = REACT_APP_API_URL + "cliente";
-        api.get(urlFetch).then((res) => {
-            var data = res.data.map(function (obj) {
-                obj.text = obj.text || obj.nit + " - " + obj.razonsocial;
-                return obj;
-            });
-            setCliente(data);
-        });
-    };
-
-    const fetchDataTipoTransporte = () => {
-        let urlFetch = REACT_APP_API_URL + "tipoTransporte";
-        api.get(urlFetch).then((res) => {
-            var data = res.data.map(function (obj) {
-                obj.text = obj.text || obj.id + " - " + obj.descripcion;
-                return obj;
-            });
-            setTipoTransporte(data);
-        });
-    };
-
-    const fetchDataEstadoProceso = () => {
-        let urlFetch = REACT_APP_API_URL + "estado";
-        api.get(urlFetch).then((res) => {
-            var data = res.data.map(function (obj) {
-                obj.text = obj.text || obj.id + " - " + obj.descripcion;
-                return obj;
-            });
-            setEstadoProceso(data);
-        });
-    };
-
     // Mutation methods removed for Read-Only Context
 
     const data = {
         db, detail, setToDetail, setToUpdate,
         module, setModule,  // detail setters kept for view logic
-        cliente, tipoTransporte, estadoProceso,
         proceso, setProceso, timeLine, setTimeLine, setDetail
     };
 

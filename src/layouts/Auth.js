@@ -27,6 +27,7 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 import { LoginProvider } from "context/LoginContext";
 import { NotificationProvider } from "context/NotificationContext";
 import { LoadingProvider } from "context/LoadingContext";
+import logo from "assets/img/brand/logoJust.png"; 
 
 import { useAuth } from "../hooks/useAuth";
 
@@ -69,10 +70,22 @@ const Auth = (props) => {
         <AuthNavbar />
         <div className="header bg-gradient-default py-7 py-lg-8">
           <Container>
-            <div className="header-body text-center mb-7">
+            <div className="header-body text-center mb-3">
               <Row className="justify-content-center">
                 <Col lg="5" md="6">
                   <h1 className="text-white">¡Bienvenido a JustLogistics!</h1>
+                  <img
+                    alt="Just Logistics"
+                    className="img-fluid"
+                    src={logo}
+                    style={{
+                      width: "100%",
+                      maxWidth: "300px",
+                      height: "300px",
+                      objectFit: "contain",
+                    }}
+                  />
+                
                 </Col>
               </Row>
             </div>
