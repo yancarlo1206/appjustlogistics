@@ -51,6 +51,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import useAuth from "hooks/useAuth";
 
 var ps;
 
@@ -68,8 +69,12 @@ const Sidebar = (props) => {
   const closeCollapse = () => {
     setCollapseOpen(false);
   };
+  const {logout} = useAuth();
+   const logOut = () => {
+    logout();
+  };
   // creates the links that appear in the left menu / Sidebar
-  const createLinks = (routes) => {
+  /*const createLinks = (routes) => {
     return routes.map((prop, key) => {
       if (!prop.invisible) {
         return (
@@ -83,10 +88,48 @@ const Sidebar = (props) => {
               {prop.name}
             </NavLink>
           </NavItem>
+          
         );
       }
     });
-  };
+  };*/
+  const createLinks = (routes) => {
+  return (
+    <>
+      {routes.map((prop, key) => {
+        if (!prop.invisible) {
+          return (
+            <NavItem key={key}>
+              <NavLink
+                to={prop.layout + prop.path}
+                tag={NavLinkRRD}
+                onClick={closeCollapse}
+              >
+                <i className={prop.icon} />
+                {prop.name}
+              </NavLink>
+            </NavItem>
+          );
+        }
+        return null;
+      })}
+      <NavItem>
+        <hr className="my-3 ml-3 mr-3" />
+      </NavItem>
+      {/* item para cerrar sesión */}
+      <NavItem>
+        <button
+          className="btn btn-link nav-link "
+          onClick={logOut}
+        >
+          <i className="ni ni-button-power text-danger" />
+          Cerrar Sesión
+        </button>
+      </NavItem>
+    </>
+  );
+};
+
 
   const { bgColor, routes, logo } = props;
   let navbarBrandProps;
@@ -144,6 +187,7 @@ const Sidebar = (props) => {
                   <span />
                 </button>
               </Col>
+              
             </Row>
           </div>
           {/* Navigation */}
