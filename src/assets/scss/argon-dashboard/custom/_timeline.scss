@@ -3,7 +3,7 @@
 //
 
 // Default variables for timeline (will not override if already set)
-$timeline-axis-width: 2px !default;
+$timeline-axis-width: 3px !default;
 $timeline-axis-color: rgba(0, 0, 0, 0.08) !default;
 $timeline-step-border-width: 2px !default;
 $timeline-step-border-color: rgba(0, 0, 0, 0.08) !default;
@@ -69,8 +69,8 @@ $timeline-step-bg: $gray-100 !default;
     align-items: center;
     justify-content: center;
     left: 0;
-    width: 33px;
-    height: 33px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     // background: $timeline-step-bg;
     // border: $timeline-step-border-width solid $timeline-step-border-color;

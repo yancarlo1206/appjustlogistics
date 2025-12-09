@@ -14,7 +14,19 @@ import Header from "components/Headers/Header";
 import { Link, useParams } from "react-router-dom";
 
 import TrackingContext from "context/TrackingContext";
-
+import img1 from "assets/img/icons/timeline/1.png";
+import img2 from "assets/img/icons/timeline/2.png";
+import img3 from "assets/img/icons/timeline/3.png";
+import img4 from "assets/img/icons/timeline/4.png";
+import img5 from "assets/img/icons/timeline/5.png";
+import img6 from "assets/img/icons/timeline/6.png";
+import img7 from "assets/img/icons/timeline/7.png";
+import img8 from "assets/img/icons/timeline/8.png";
+import img9 from "assets/img/icons/timeline/9.png";
+import img10 from "assets/img/icons/timeline/10.png";
+import img11 from "assets/img/icons/timeline/11.png";
+import img12 from "assets/img/icons/timeline/12.png";
+import img13 from "assets/img/icons/timeline/13.png";
 const Tracking = () => {
 
     const {
@@ -30,6 +42,21 @@ const Tracking = () => {
             setProceso(id);
         }
     }, []);
+    const images = {
+        1: img1,
+        2: img2,
+        3: img3,
+        4: img4,
+        5: img5,
+        6: img6,
+        7: img7,
+        8: img8,
+        9: img9,
+        10: img10,
+        11: img11,
+        12: img12,
+        13: img13
+    };
 
     return (
         <>
@@ -102,19 +129,24 @@ const Tracking = () => {
                                         data-timeline-content="axis"
                                     >
                                         {timeLine.map((event, index) => (
+                                             
                                             <div key={event.id} className="timeline-block">
-                                                <span className={`timeline-step ${event.color || 'bg-success'}`}>
-                                                    <i className="ni ni-check-bold" />
+                                                <span className="timeline-step bg-default">
+                                                    <Link to={`/admin/tracking/event/${event.id}`}>
+                                                        <img
+                                                            src={images[event.id]}
+                                                            alt={event.descripcion || `evento-${event.id}`}
+                                                            style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: '50%' }}
+                                                        />
+                                                    </Link>
                                                 </span>
                                                 <div className="timeline-content" style={{ maxWidth: "none" }}>
                                                     <small className="text-muted font-weight-bold">
-                                                        {event.fechaevento || event.fecha}
+                                                        {event.fechaevento}
                                                     </small>
-                                                    <h5 className="mt-3 mb-0">{event.descripcion}</h5>
-                                                    <p className="text-sm mt-1 mb-0">
-                                                        Estado actual del proceso: {event.estado?.descripcion || event.estado}
-                                                    </p>
-                                                    <div className="mt-3">
+                                                      <h5 className="text-lg mt-3 mb-0">Mensaje</h5>
+                                                        <p className="text-lg mt-1 mb-0">{event.descripcion}</p>
+                                                    <div className="text-xl mt-3">
                                                         <Badge color="success" pill>
                                                             {event.estado?.descripcion || event.estado}
                                                         </Badge>
