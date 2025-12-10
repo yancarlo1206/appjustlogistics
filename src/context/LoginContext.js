@@ -30,9 +30,9 @@ const LoginProvider = ({ children }) => {
         }
         api.post(endpoint, options).then((res) => {
             if (!res.err) {
-                localStorage.setItem("token", JSON.stringify(res.token));
+                localStorage.setItem("token", JSON.stringify(res.data.token));
 
-                const decoded = decodeToken(res.token);
+                const decoded = decodeToken(res.data.token);
                 if (decoded?.tipoUsuario === "Externo") {
                     navigate('/admin/tracking');
                 } else {
