@@ -32,18 +32,19 @@ const TrackingProvider = ({ children }) => {
     const { db } = state;
 
     let api = helpHttp();
-    let url = REACT_APP_API_URL + "proceso/listPorCliente";
+    let url = REACT_APP_API_URL + "proceso";
     let urlline = REACT_APP_API_URL + "lineaTiempo";
+   
 
     useEffect(() => {
         fetchData();
     }, []);
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (toUpdate && toUpdate != 0) {
             fetchDataDetail();
         }
-    }, [toUpdate]);
+    }, [toUpdate]);*/
 
     useEffect(() => {
         if (proceso && proceso != 0) {
@@ -57,6 +58,7 @@ const TrackingProvider = ({ children }) => {
 
     const fetchData = () => {
         setLoading(true);
+        url = url + "/listPorCliente";
         api.get(url).then((res) => {
             if (!res.err) {
                 dispatch({ type: TYPES.READ_ALL_DATA, payload: res.data });
