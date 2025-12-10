@@ -30,7 +30,7 @@ import img13 from "assets/img/icons/timeline/13.png";
 const Tracking = () => {
 
     const {
-         setProceso, detail, timeLine
+         setProceso, detail, timeLine,setToUpdate
     } = useContext(TrackingContext);
 
     const { id } = useParams();
