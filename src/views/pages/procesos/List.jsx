@@ -147,6 +147,7 @@ function List({ tab }) {
                                     data={filteredData}
                                     pagination
                                     highlightOnHover
+                                    noDataComponent={<div className="text-center p-4"><p className="text-muted">No hay registros para mostrar</p></div>}
                                 />
 
                             </CardBody>
