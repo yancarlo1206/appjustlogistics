@@ -1,53 +1,54 @@
 export const validationsForm = (form) => {
     let errores = {};
-    let regexText40 = /^.{1,40}$/;
+    let regexText40 = /^.{1,60}$/;
+    let regexText100 = /^.{1,100}$/;
 
     if (!form.nit) {
-        errores.nit = "Please the field is required.";
-    } else if (!regexText40.test(form.nit.trim())) {
-        errores.nit = "The field accepts up to 40 characters.";
+        errores.nit = "Por favor, este campo es requerido.";
+    } else if (!regexText100.test(form.nit.trim())) {
+        errores.nit = "El campo acepta hasta 40 caracteres.";
     } else {
         errores.nit = "";
     }
 
     if (!form.razonsocial) {
-        errores.razonsocial = "Please the field is required.";
-    } else if (!regexText40.test(form.razonsocial.trim())) {
-        errores.razonsocial = "The field accepts up to 40 characters.";
+        errores.razonsocial = "Por favor, este campo es requerido.";
+    } else if (!regexText100.test(form.razonsocial.trim())) {
+        errores.razonsocial = "El campo acepta hasta 40 caracteres.";
     } else {
         errores.razonsocial = "";
     }
 
     if (!form.nombrecontacto) {
-        errores.nombrecontacto = "Please the field is required.";
+        errores.nombrecontacto = "Por favor, este campo es requerido.";
     } else if (!regexText40.test(form.nombrecontacto.trim())) {
-        errores.nombrecontacto = "The field accepts up to 40 characters.";
+        errores.nombrecontacto = "El campo acepta hasta 40 caracteres.";
     } else {
         errores.nombrecontacto = "";
     }
 
     if (!form.apellidocontacto) {
-        errores.apellidocontacto = "Please the field is required.";
+        errores.apellidocontacto = "Por favor, este campo es requerido.";
     } else if (!regexText40.test(form.apellidocontacto.trim())) {
-        errores.apellidocontacto = "The field accepts up to 40 characters.";
+        errores.apellidocontacto = "El campo acepta hasta 40 caracteres.";
     } else {
         errores.apellidocontacto = "";
     }
 
     let regexCorreo = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/;
     if (!form.correo) {
-        errores.correo = "Please the field is required.";
+        errores.correo = "Por favor, este campo es requerido.";
     } else if (!regexCorreo.test(form.correo.trim())) {
-        errores.correo = "The field must be a valid email address.";
+        errores.correo = "El campo debe ser una dirección de correo válida.";
     } else {
         errores.correo = "";
     }
 
     let regexTelefono = /^\d{7,12}$/;
     if (!form.telefono) {
-        errores.telefono = "Please the field is required.";
+        errores.telefono = "Por favor, este campo es requerido.";
     } else if (!regexTelefono.test(form.telefono.trim())) {
-        errores.telefono = "Only numbers allowed, min 7 and max 12 digits.";
+        errores.telefono = "Solo se permiten números, mínimo 7 y máximo 12 dígitos.";
     } else {
         errores.telefono = "";
     }
