@@ -1,41 +1,41 @@
 export const validationsForm = (form) => {
     let errores = {};
-    let regexText40 = /^.{1,40}$/;
+    let regexText40 = /^.{1,100}$/;
 
     if (!form.nombrecontenedor) {
-        errores.nombrecontenedor = "Please the field is required.";
+        errores.nombrecontenedor = "Por favor, este campo es requerido.";
     } else if (!regexText40.test(form.nombrecontenedor.trim())) {
-        errores.nombrecontenedor = "The field accepts up to 40 characters.";
+        errores.nombrecontenedor = "El campo acepta hasta 100 caracteres.";
     } else {
         errores.nombrecontenedor = "";
     }
 
     if (!form.cliente) {
-        errores.cliente = "Please the field is required.";
+        errores.cliente = "Por favor, este campo es requerido.";
     } else {
         errores.cliente = "";
     }
 
     if (!form.tipotransporte) {
-        errores.tipotransporte = "Please the field is required.";
+        errores.tipotransporte = "Por favor, este campo es requerido.";
     } else {
         errores.tipotransporte = "";
     }
 
     if (!form.estado) {
-        errores.estado = "Please the field is required.";
+        errores.estado = "Por favor, este campo es requerido.";
     } else {
         errores.estado = "";
     }
 
     if (!form.fechafinalizacion) {
-        errores.fechafinalizacion = "Please the field is required.";
+        errores.fechafinalizacion = "Por favor, este campo es requerido.";
     } else {
         errores.fechafinalizacion = "";
     }
 
     if (!form.fechainicio) {
-        errores.fechainicio = "Please the field is required.";
+        errores.fechainicio = "Por favor, este campo es requerido.";
     } else {
         errores.fechainicio = "";
     }
